@@ -6,12 +6,11 @@ package scene.styling;
 public class Chrome extends Material{
     public Chrome() {
         super(
-                new float[]{0.19225f, 0.19225f, 0.19225f, 1.0f},
-                new float[]{0.50754f, 0.50754f, 0.50754f, 1.0f},
-                new float[]{0.508273f, 0.508273f, 0.508273f, 1.0f},
-                new float[]{0.4f},
+                new float[]{0.25f, 0.25f, 0.25f, 1.0f},
+                new float[]{0.4f, 0.4f, 0.4f, 1.0f},
+                new float[]{0.774597f, 0.774597f, 0.774597f, 1.0f},
+                0.6f,
                 new float[]{0.0f, 0.0f, 0.0f, 1.0f}
         );
     }
-} {
 }

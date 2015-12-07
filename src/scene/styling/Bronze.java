@@ -6,10 +6,10 @@ package scene.styling;
 public class Bronze extends Material{
     public Bronze() {
         super(
-                new float[]{0.329412f, 0.223529f, 0.027451f, 1.0f},
-                new float[]{0.780392f, 0.568627f, 0.113725f, 1.0f},
-                new float[]{0.992157f, 0.941176f, 0.807843f, 1.0f},
-                0.21794872f,
+                new float[]{0.2125f, 0.1275f, 0.054f, 1.0f},
+                new float[]{0.714f, 0.4284f, 0.18144f, 1.0f},
+                new float[]{0.393548f, 0.271906f, 0.166721f, 1.0f},
+                0.2f,
                 new float[]{0.0f, 0.0f, 0.0f, 1.0f}
         );
     }

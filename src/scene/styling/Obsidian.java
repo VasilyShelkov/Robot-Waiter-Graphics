@@ -6,10 +6,10 @@ package scene.styling;
 public class Obsidian extends Material{
     public Obsidian() {
         super(
-                new float[]{0.1745f, 0.01175f, 0.01175f, 1.0f},
-                new float[]{0.61424f, 0.04136f, 0.04136f, 1.0f},
-                new float[]{0.727811f, 0.626959f, 0.626959f, 1.0f},
-                0.6f,
+                new float[]{0.05375f, 0.05f, 0.06625f, 1.0f},
+                new float[]{0.18275f, 0.17f, 0.22525f, 1.0f},
+                new float[]{0.332741f, 0.328634f, 0.346435f, 1.0f},
+                0.3f,
                 new float[]{0.0f, 0.0f, 0.0f, 1.0f}
         );
     }

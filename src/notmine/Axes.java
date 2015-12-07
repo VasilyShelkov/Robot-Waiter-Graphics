@@ -7,7 +7,7 @@ package notmine; /**
  * @version   1.0 (26/07/2013)
  */
 
-import com.jogamp.opengl.*;
+import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.gl2.GLUT;
 
 public class Axes {

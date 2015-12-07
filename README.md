@@ -25,8 +25,12 @@ A Java OpenGL replayable animation which shows a robot holding some drinks movin
   -	Set down items onto table…
   -	Buttons to start/stop/reset the animation
 
-### 4.	Camera should point towards center of room, user should be able to use the mouse to rotate the camera around the scene.
+### 4.	main.Camera should point towards center of room, user should be able to use the mouse to rotate the camera around the scene.
 
 ### 5.	Add the ability to switch to the view of the robot.
 
 ### 6.	Add multiple robots to the room.
+
+Commands:
+
+Run : java -cp .:./Robot-Waiter-Graphics/:./lib/gluegen-rt.jar:./lib/jogl-all.jar: main.MainFrame

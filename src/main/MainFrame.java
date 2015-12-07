@@ -17,8 +17,7 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
     public final static int FRAME_HEIGHT = 800;
     public final static int FPS = 30;
 
-    private final Checkbox checkMainLight;
-    private final Checkbox checkSpotLight;
+    private final Checkbox checkMainLight, checkSpotLight, checkRobotLight;
     private GLCanvas canvas;
 
     private Renderer renderer;
@@ -48,6 +47,7 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
         Panel p1 = new Panel(new GridLayout(5,1));
         checkMainLight = addCheckbox(p1, "MainLights on", this);
         checkSpotLight = addCheckbox(p1, "Spotlights on", this);
+        checkRobotLight = addCheckbox(p1, "Robotlight on", this);
         p.add(p1);
 //        p1 = new Panel(new GridLayout(4,1));
 //        Button rotate = new Button("Rotate light");
@@ -96,6 +96,10 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
         } else if(source == checkSpotLight){
             renderer.getScene().getSpotLight1().setSwitchedOn(checkSpotLight.getState());
             renderer.getScene().getSpotLight2().setSwitchedOn(checkSpotLight.getState());
+            canvas.repaint();
+        } else if(source == checkRobotLight){
+            renderer.getScene().getRobot1light().setSwitchedOn(checkRobotLight.getState());
+//            renderer.getScene().getSpotLight2().setSwitchedOn(checkSpotLight.getState());
             canvas.repaint();
         }
     }

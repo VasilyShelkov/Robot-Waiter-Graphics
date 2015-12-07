@@ -8,4 +8,10 @@ import com.jogamp.opengl.GL2;
 public interface Renderable {
 
     void render(GL2 gl);
+
+    void transform(GL2 gl);
+
+    void draw(GL2 gl);
+
+    void update(GL2 gl);
 }
