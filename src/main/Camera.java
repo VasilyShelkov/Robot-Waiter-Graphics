@@ -1,3 +1,5 @@
+package main;
+
 import com.jogamp.opengl.glu.GLU;
 
 /**

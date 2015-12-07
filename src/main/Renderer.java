@@ -1,13 +1,11 @@
+package main;
+
 import com.jogamp.opengl.*;
-import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.gl2.GLUT;
 
 import notmine.Axes;
-import robot.Robot;
-import room.Room;
-
-import java.awt.event.MouseListener;
+import scene.SceneManager;
 
 /**
  * Created by vasily on 24/11/15.
@@ -23,8 +21,7 @@ public class Renderer implements GLEventListener {
 
     private Camera camera;
 
-    private Robot robot;
-    private Room room;
+    private SceneManager scene;
     private Axes axes;
 
     public Renderer(int width, int height) {
@@ -35,8 +32,9 @@ public class Renderer implements GLEventListener {
     @Override
     public void init(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
-        glu = new GLU();
-        glut = new GLUT();
+
+        this.glu = new GLU();
+        this.glut = new GLUT();
 
         gl.glClearColor(0f, 0f, 0f, 1f);
         gl.glEnable(GL2.GL_DEPTH_TEST);
@@ -44,19 +42,17 @@ public class Renderer implements GLEventListener {
         gl.glCullFace(GL2.GL_BACK);
         gl.glShadeModel(GL2.GL_SMOOTH);
         gl.glPolygonMode(GL2.GL_FRONT_AND_BACK, GL2.GL_FILL);
-//        gl.glEnable(GL2.GL_LIGHTING);
-//        gl.glEnable(GL2.GL_LIGHT0);
-//        gl.glEnable(GL2.GL_NORMALIZE);
+        gl.glEnable(GL2.GL_LIGHTING);
+        gl.glEnable(GL2.GL_NORMALIZE);
 
-        double radius = 10.0;
+        double radius = 50.0;
         double theta = Math.toRadians(-45);
         double phi = Math.toRadians(30);
 
 
         camera = new Camera(theta, phi, radius);
-        room = new Room(10,10,10);
-        room.initialiseDisplayLists(gl);
-        robot = new Robot(glut, glu, 6);
+        scene = new SceneManager();
+        scene.createGraph(gl);
         axes = new Axes(2.2, 1.8, 1.6);
     }
 
@@ -67,8 +63,8 @@ public class Renderer implements GLEventListener {
         gl.glLoadIdentity();
         camera.view(glu);
         axes.display(gl, glut);
-        robot.render(gl);
-        room.render(gl);
+        scene.updateGraph(gl);
+        scene.renderGraph(gl);
     }
 
     @Override
@@ -97,6 +93,10 @@ public class Renderer implements GLEventListener {
 
     @Override
     public void dispose(GLAutoDrawable drawable) {}
+
+    public SceneManager getScene() {
+        return scene;
+    }
 
     public Camera getCamera() {
         return camera;
