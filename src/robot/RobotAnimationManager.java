@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class RobotAnimationManager {
     private ArrayList<KeyFrame> keyFrames = new ArrayList<>();
     private int nextKeyFramesIndex;
-    private final double globalStartTime, localTime, savedLocalTime;
+    private double globalStartTime, localTime, savedLocalTime;
 
     private double xPos;
     private double zPos;
@@ -19,8 +19,8 @@ public class RobotAnimationManager {
 
     public RobotAnimationManager(ArrayList<KeyFrame> keyFrames) {
         this.keyFrames = keyFrames;
-        localTime = 0;
         savedLocalTime = 0;
+        localTime = getSeconds();
         globalStartTime = getSeconds();
         xPos = keyFrames.get(0).getxPosition();
         zPos = keyFrames.get(0).getzPosition();
@@ -30,18 +30,47 @@ public class RobotAnimationManager {
     }
 
     public void moveToNextFrame() {
+        int currentKeyFrameIndex = nextKeyFramesIndex - 1;
         if(nextKeyFramesIndex > keyFrames.size()-1){
             nextKeyFramesIndex = 0;
+
         }
-        if (getxPos() == keyFrames.get(nextKeyFramesIndex).getxPosition() &&
-                getzPos() == keyFrames.get(nextKeyFramesIndex).getzPosition() &&
-                getRotation() == keyFrames.get(nextKeyFramesIndex).getRotation()) {
-            nextKeyFramesIndex ++;
-        } else {
+        if (currentKeyFrameIndex == -1){
+            currentKeyFrameIndex = 0;
+        }
+
+        double currentSeconds = getSeconds();
+        int duration = 1;
+        double normalisedTime = (currentSeconds - localTime)/duration;
+        xPos = LinearInterpolation(normalisedTime,
+                keyFrames.get(currentKeyFrameIndex).getxPosition(),
+                keyFrames.get(nextKeyFramesIndex).getxPosition());
+        zPos = LinearInterpolation(normalisedTime,
+                keyFrames.get(currentKeyFrameIndex).getzPosition(),
+                keyFrames.get(nextKeyFramesIndex).getzPosition());
+        rotation = LinearInterpolation(normalisedTime,
+                keyFrames.get(currentKeyFrameIndex).getRotation(),
+                keyFrames.get(nextKeyFramesIndex).getRotation());
+
+        if (currentSeconds - localTime > duration) {
+            localTime = currentSeconds;
             xPos = keyFrames.get(nextKeyFramesIndex).getxPosition();
             zPos = keyFrames.get(nextKeyFramesIndex).getzPosition();
             rotation = keyFrames.get(nextKeyFramesIndex).getRotation();
+            nextKeyFramesIndex++;
         }
+    }
+
+    double LinearInterpolation(double normalisedTime, double start, double end) {
+        double cosNormalisedTime = (1-Math.cos((normalisedTime*Math.PI)))/2;
+        return start * (1-cosNormalisedTime) + (end*cosNormalisedTime);
+//        double normalisedTimeSquare = Math.pow(normalisedTime, 2);
+//        double a0 = ;
+//        double a1 = ;
+//        double a2 = ;
+//        double a3 = ;
+//
+//        return a0*normalisedTime*normalisedTimeSquare+a1*normalisedTimeSquare+a2*normalisedTime+a3;
     }
 
     private double getSeconds() {

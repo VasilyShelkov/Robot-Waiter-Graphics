@@ -93,15 +93,12 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
         if (source == checkMainLight){
             renderer.getScene().getMainLight1().setSwitchedOn(checkMainLight.getState());
             renderer.getScene().getMainLight2().setSwitchedOn(checkMainLight.getState());
-            canvas.repaint();
         } else if(source == checkSpotLight){
             renderer.getScene().getSpotLight1().setSwitchedOn(checkSpotLight.getState());
             renderer.getScene().getSpotLight2().setSwitchedOn(checkSpotLight.getState());
-            canvas.repaint();
         } else if(source == checkRobotLight){
             renderer.getScene().getRobot1light().setSwitchedOn(checkRobotLight.getState());
 //            renderer.getScene().getSpotLight2().setSwitchedOn(checkSpotLight.getState());
-            canvas.repaint();
         }
     }
 
