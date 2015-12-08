@@ -1,4 +1,4 @@
-package main;
+package robot;
 
 /**
  * Created by vasily on 08/12/15.

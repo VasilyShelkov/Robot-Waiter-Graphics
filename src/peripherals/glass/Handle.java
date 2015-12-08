@@ -23,6 +23,6 @@ public class Handle extends SceneGraph {
 
     @Override
     public void draw(GL2 gl) {
-        glut.glutSolidCylinder(handleRadius, handleHeight, slices, slices);
+        glut.glutSolidCylinder(handleRadius, handleHeight, slices, 1);
     }
 }

@@ -17,7 +17,7 @@ public class Forearm extends SceneGraph{
     private double foreArmTilt;
 
     public Forearm(double forearmLength, double armRadius, int slates, double forearmRotation, double armYRotation, Tray tray) {
-        super(0,0,armRadius, new Bronze());
+        super(0,0,armRadius*0.8, new Bronze());
         this.forearmLength = forearmLength;
         this.forearmRadius = armRadius*0.4;
         this.slates = slates;

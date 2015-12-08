@@ -2,9 +2,7 @@ package main;
 
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.glu.GLU;
-import com.jogamp.opengl.util.gl2.GLUT;
 
-import notmine.Axes;
 import notmine.Camera;
 import scene.SceneManager;
 
@@ -18,12 +16,10 @@ public class Renderer implements GLEventListener {
     private static final float FAR_CLIP=100.0f;
 
     private GLU glu;
-    private GLUT glut;
 
     private Camera camera;
 
     private SceneManager scene;
-    private Axes axes;
 
     public Renderer(int width, int height) {
         this.width = width;
@@ -35,7 +31,6 @@ public class Renderer implements GLEventListener {
         final GL2 gl = drawable.getGL().getGL2();
 
         this.glu = new GLU();
-        this.glut = new GLUT();
 
         gl.glClearColor(0f, 0f, 0f, 1f);
         gl.glEnable(GL2.GL_DEPTH_TEST);
@@ -54,7 +49,6 @@ public class Renderer implements GLEventListener {
         camera = new Camera(theta, phi, radius);
         scene = new SceneManager();
         scene.createGraph(gl);
-        axes = new Axes(2.2, 1.8, 1.6);
     }
 
     @Override
@@ -63,8 +57,7 @@ public class Renderer implements GLEventListener {
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT|GL2.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
         camera.view(glu);
-        axes.display(gl, glut);
-        scene.updateGraph(gl);
+//        scene.updateGraph(gl);
         scene.renderGraph(gl);
     }
 

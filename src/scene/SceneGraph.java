@@ -80,7 +80,7 @@ public class SceneGraph implements Renderable {
         gl.glPushMatrix();
         transform(gl);
         for(Light light: lights) {
-            light.use(gl, glut, true);
+            light.use(gl, glut);
         }
         for (SceneGraph child: children) {
             child.renderLights(gl);
@@ -125,5 +125,9 @@ public class SceneGraph implements Renderable {
             System.out.println("Error loading texture " + filename);
         }
         return tex;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 }

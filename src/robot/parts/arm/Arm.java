@@ -14,25 +14,25 @@ public class Arm extends SceneGraph {
     private double armXRotation;
     private double armYRotation;
     private final Joint joint;
-    private int slates;
+    private int slices;
 
     public Arm(double bodyX, double bodyY, double armRadius, double armLength,
                double armXRotation, double armYRotation, double forearmRotation,
-               boolean hasTray, int slates) {
+               boolean hasTray, int slices) {
         super(bodyX, bodyY, 0, new Bronze());
         this.armRadius = armRadius;
         this.armLength = armLength;
         this.armXRotation = armXRotation;
         this.armYRotation = armYRotation;
-        this.slates = slates;
+        this.slices = slices;
 
 
         Tray tray = null;
         if (hasTray) {
-            tray = new Tray(armRadius*0.4, slates);
+            tray = new Tray(armRadius*0.4, slices);
         }
 
-        joint = new Joint(forearmRotation, armYRotation, armLength, armRadius, slates, tray);
+        joint = new Joint(forearmRotation, armYRotation, armLength, armRadius, slices, tray);
         addChild(joint);
     }
 
@@ -45,7 +45,7 @@ public class Arm extends SceneGraph {
 
     @Override
     public void draw(GL2 gl) {
-        glut.glutSolidCylinder(armRadius, armLength, slates, slates);
+        glut.glutSolidCylinder(armRadius, armLength, slices, 1);
     }
 
     public Joint getJoint() {

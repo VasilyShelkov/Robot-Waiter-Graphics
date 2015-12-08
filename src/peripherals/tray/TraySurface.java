@@ -19,7 +19,7 @@ public class TraySurface extends SceneGraph {
 
     @Override
     public void draw(GL2 gl) {
-        gl.glScaled(2, 0.03 ,1.5);
+        gl.glScaled(3, 0.03 ,3);
         gl.glTranslated(0, trayRadius, trayRadius);
         glut.glutSolidSphere(trayRadius, slices, slices);
     }

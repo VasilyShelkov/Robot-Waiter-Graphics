@@ -9,8 +9,9 @@ import scene.styling.BluePlastic;
 /**
  * Created by vasily on 03/12/15.
  */
-public class Body extends SceneGraph {
-    private final Texture bodyTexture;
+public class LowerBody extends SceneGraph {
+    private Texture bodyTexture;
+
     private double speed;
     private double bodyHeight;
     private double bodyRotation;
@@ -18,12 +19,12 @@ public class Body extends SceneGraph {
     private GLUquadric quadric;
     private boolean forward;
 
-    public Body(double bodyHeight, int slices, Texture t) {
+    public LowerBody(double bodyHeight, Texture t) {
         super(0,0,0, new BluePlastic());
         this.bodyHeight = bodyHeight;
         this.speed = 0;
         this.bodyRotation = 0;
-        this.sphereSlices = slices;
+        this.sphereSlices = 50;
         this.bodyTexture = t;
 
         quadric = glu.gluNewQuadric();
@@ -59,8 +60,11 @@ public class Body extends SceneGraph {
         this.speed = speed;
     }
 
-
     public void setDirection(boolean direction) {
         this.forward = direction;
+    }
+
+    public void setBodyTexture(Texture bodyTexture) {
+        this.bodyTexture = bodyTexture;
     }
 }

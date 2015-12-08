@@ -18,8 +18,9 @@ public class Light implements Cloneable {
   // If w is 0, then it is a directional light (at infinite distance in the given vector direction).
   // If w is 1, then it is a positional light (at the given position in the scene, and emitting in all directions).
   public static final float[] WHITE_LIGHT = {1.0f,1.0f,1.0f};
-  public static final float[] DEFAULT_AMBIENT = {0.0f,0.0f,0.0f}; 
-  // default ambient is 0,0,0
+  public static final float[] DEFAULT_AMBIENT = {0.0f,0.0f,0.0f};
+    private final boolean show;
+    // default ambient is 0,0,0
   // If it is 0.1,0.1,0.1, then a spotlight effect will be added to the ambient material value for any object,
   // which can result in the spotlight appearing on polygons that are pointing away from the spotlight,
   // which is not desired.
@@ -38,17 +39,18 @@ public class Light implements Cloneable {
   /**
    * Constructors
    */
-  public Light(int i) {
-    this(i, DEFAULT_POSITION, DEFAULT_AMBIENT, WHITE_LIGHT, WHITE_LIGHT, true);
+  public Light(int i, boolean show) {
+    this(i, DEFAULT_POSITION, DEFAULT_AMBIENT, WHITE_LIGHT, WHITE_LIGHT, true, show);
   }    
   
-  public Light(int i, float[] position) {
-    this(i, position, DEFAULT_AMBIENT, WHITE_LIGHT, WHITE_LIGHT, true);
+  public Light(int i, float[] position, boolean show) {
+    this(i, position, DEFAULT_AMBIENT, WHITE_LIGHT, WHITE_LIGHT, true, show);
   }
 
-  public Light(int i, float[] position, float[] ambient, float[] diffuse, float[] specular, boolean on) {
+  public Light(int i, float[] position, float[] ambient, float[] diffuse, float[] specular, boolean on, boolean show) {
     index = i;
-    this.position = position.clone();
+      this.show = show;
+      this.position = position.clone();
     this.ambient = ambient.clone();
     this.diffuse = diffuse.clone();
     this.specular = specular.clone();
@@ -97,7 +99,7 @@ public class Light implements Cloneable {
     gl.glDisable(index); 
   }
 
-  public void use(GL2 gl, GLUT glut, boolean show) {
+  public void use(GL2 gl, GLUT glut) {
     if (switchedOn) {
       gl.glEnable(index); 
       // There is no glLightdv, so use glLightfv

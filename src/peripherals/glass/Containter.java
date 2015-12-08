@@ -21,6 +21,6 @@ public class Containter extends SceneGraph {
 
     @Override
     public void draw(GL2 gl) {
-        glut.glutSolidCylinder(containerRadius, containerHeight, slices, slices);
+        glut.glutSolidCylinder(containerRadius, containerHeight, slices, 1);
     }
 }

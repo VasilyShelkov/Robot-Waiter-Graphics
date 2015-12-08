@@ -16,7 +16,7 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
     public final static int CANVAS_HEIGHT = 400;
     public final static int FRAME_WIDTH = 800;
     public final static int FRAME_HEIGHT = 800;
-    public final static int FPS = 30;
+    public final static int FPS = 20;
 
     private final Checkbox checkMainLight, checkSpotLight, checkRobotLight;
     private GLCanvas canvas;
@@ -98,7 +98,7 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
             renderer.getScene().getSpotLight2().setSwitchedOn(checkSpotLight.getState());
         } else if(source == checkRobotLight){
             renderer.getScene().getRobot1light().setSwitchedOn(checkRobotLight.getState());
-//            renderer.getScene().getSpotLight2().setSwitchedOn(checkSpotLight.getState());
+            renderer.getScene().getRobot2light().setSwitchedOn(checkRobotLight.getState());
         }
     }
 

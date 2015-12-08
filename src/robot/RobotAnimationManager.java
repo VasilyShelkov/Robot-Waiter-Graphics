@@ -1,7 +1,5 @@
 package robot;
 
-import main.KeyFrame;
-
 import java.util.ArrayList;
 
 /**
@@ -30,27 +28,44 @@ public class RobotAnimationManager {
     }
 
     public void moveToNextFrame() {
-        int currentKeyFrameIndex = nextKeyFramesIndex - 1;
+        int postNextKeyFrameIndex = nextKeyFramesIndex + 1;
+        if (postNextKeyFrameIndex > keyFrames.size()-1){
+            postNextKeyFrameIndex = 0;
+        }
+
         if(nextKeyFramesIndex > keyFrames.size()-1){
             nextKeyFramesIndex = 0;
-
         }
+
+        int currentKeyFrameIndex = nextKeyFramesIndex - 1;
         if (currentKeyFrameIndex == -1){
             currentKeyFrameIndex = 0;
+        }
+
+        int preCurrentKeyFrameIndex = currentKeyFrameIndex - 1;
+        if (preCurrentKeyFrameIndex == -1) {
+            preCurrentKeyFrameIndex = 0;
         }
 
         double currentSeconds = getSeconds();
         int duration = 1;
         double normalisedTime = (currentSeconds - localTime)/duration;
-        xPos = LinearInterpolation(normalisedTime,
+        xPos = quadraticInterpolation(normalisedTime,
+                keyFrames.get(preCurrentKeyFrameIndex).getxPosition(),
                 keyFrames.get(currentKeyFrameIndex).getxPosition(),
-                keyFrames.get(nextKeyFramesIndex).getxPosition());
-        zPos = LinearInterpolation(normalisedTime,
+                keyFrames.get(nextKeyFramesIndex).getxPosition(),
+                keyFrames.get(postNextKeyFrameIndex).getxPosition());
+        zPos = quadraticInterpolation(normalisedTime,
+                keyFrames.get(preCurrentKeyFrameIndex).getzPosition(),
                 keyFrames.get(currentKeyFrameIndex).getzPosition(),
-                keyFrames.get(nextKeyFramesIndex).getzPosition());
-        rotation = LinearInterpolation(normalisedTime,
+                keyFrames.get(nextKeyFramesIndex).getzPosition(),
+                keyFrames.get(postNextKeyFrameIndex).getzPosition());
+        rotation = quadraticInterpolation(normalisedTime,
+                keyFrames.get(preCurrentKeyFrameIndex).getRotation(),
                 keyFrames.get(currentKeyFrameIndex).getRotation(),
-                keyFrames.get(nextKeyFramesIndex).getRotation());
+                keyFrames.get(nextKeyFramesIndex).getRotation(),
+                keyFrames.get(preCurrentKeyFrameIndex).getRotation());
+        direction = keyFrames.get(currentKeyFrameIndex).isForward();
 
         if (currentSeconds - localTime > duration) {
             localTime = currentSeconds;
@@ -61,16 +76,14 @@ public class RobotAnimationManager {
         }
     }
 
-    double LinearInterpolation(double normalisedTime, double start, double end) {
-        double cosNormalisedTime = (1-Math.cos((normalisedTime*Math.PI)))/2;
-        return start * (1-cosNormalisedTime) + (end*cosNormalisedTime);
-//        double normalisedTimeSquare = Math.pow(normalisedTime, 2);
-//        double a0 = ;
-//        double a1 = ;
-//        double a2 = ;
-//        double a3 = ;
-//
-//        return a0*normalisedTime*normalisedTimeSquare+a1*normalisedTimeSquare+a2*normalisedTime+a3;
+    double quadraticInterpolation(double normalisedTime, double preStart, double start, double end, double postEnd) {
+        double normalisedTimeSquare = Math.pow(normalisedTime, 2);
+        double a0 = postEnd - end - preStart + start;
+        double a1 = preStart - start - a0;
+        double a2 = end - preStart;
+        double a3 = start;
+
+        return a0*normalisedTime*normalisedTimeSquare+a1*normalisedTimeSquare+a2*normalisedTime+a3;
     }
 
     private double getSeconds() {

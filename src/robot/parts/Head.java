@@ -17,14 +17,14 @@ public class Head extends SceneGraph {
     private double headTilt;
     int slices;
 
-    public Head(double x, double y, double z, double headHeight, double bodyLean, int slices, Texture noseTexture, Light l) {
+    public Head(double x, double y, double z, double headHeight, double bodyLean, Texture noseTexture, Light l) {
         super(x, y, z, new BluePlastic());
         this.headHeight = headHeight;
         this.headLean = -bodyLean;
-        this.slices = slices;
+        this.slices = 20;
 
         //Hat
-        addChild(new TopHat(headHeight, slices, l));
+        addChild(new TopHat(headHeight, slices*3, l));
 
         //Eyes
         double eyeHeight = headHeight * 0.5;
@@ -32,15 +32,15 @@ public class Head extends SceneGraph {
         double eyeRadius = headHeight * 0.1;
         //Left Eye
         addChild(new Eye(-headHeight*0.3, eyeHeight, eyeDepth*0.8,
-                eyeRadius*2, slices));
+                eyeRadius*2, slices/2));
 
         //Right Eye
         addChild(new Eye(headHeight*0.3, eyeHeight*1.1, eyeDepth,
-                eyeRadius, slices));
+                eyeRadius, slices/2));
 
         //Nose
         addChild(new Nose(0, eyeHeight*0.3, eyeDepth,
-                        eyeRadius*1.5, headHeight, slices, noseTexture));
+                        eyeRadius*1.5, headHeight, slices/2, noseTexture));
 
     }
 

@@ -22,12 +22,12 @@ public class UpperBody extends SceneGraph {
     private final int slices;
     private boolean forward;
 
-    public UpperBody(double height, double bodyHeight, int slices, Texture robotNoseTex, Light l) {
+    public UpperBody(double height, double bodyHeight, Texture robotNoseTex, Light l) {
         super(0, bodyHeight*0.9, 0, new BluePlastic());
         this.bodyRadius = bodyHeight*0.4;
         this.bodyHeight = bodyHeight;
         this.upperBodyHeight = height*0.7;
-        this.slices = slices;
+        this.slices = 20;
         //arms
         double armRadius = bodyHeight * 0.1;
         double armLength = bodyHeight * 0.6;
@@ -43,7 +43,7 @@ public class UpperBody extends SceneGraph {
 
         //head
         double headHeight = height*0.4;
-        head = new Head(0, this.upperBodyHeight * 0.8 + headHeight, 0, bodyRadius * 1.2, bodyLean, slices, robotNoseTex, l);
+        head = new Head(0, this.upperBodyHeight * 0.8 + headHeight, 0, bodyRadius * 1.2, bodyLean, robotNoseTex, l);
         addChild(head);
     }
 
@@ -51,7 +51,7 @@ public class UpperBody extends SceneGraph {
     public void draw(GL2 gl) {
         gl.glPushMatrix();
         gl.glRotated(-90, 1, 0, 0);
-        glut.glutSolidCylinder(bodyRadius, bodyHeight, slices, slices);
+        glut.glutSolidCylinder(bodyRadius, bodyHeight, slices, 1);
         gl.glPopMatrix();
     }
 
@@ -85,5 +85,9 @@ public class UpperBody extends SceneGraph {
 
     public void setDirection(boolean direction) {
         this.forward = direction;
+    }
+
+    public Head getHead() {
+        return head;
     }
 }

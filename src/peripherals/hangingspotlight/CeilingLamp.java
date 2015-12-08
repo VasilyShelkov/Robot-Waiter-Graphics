@@ -13,7 +13,7 @@ public class CeilingLamp extends SceneGraph{
     private final double ceilingLampHeight;
 
     public CeilingLamp(double centreX, double centreY, double centreZ, double roomArea, Light l) {
-        super(centreX, centreY, centreZ, new Silver());
+        super(centreX, 0, centreZ, new Silver());
         this.ceilingLampRadius = roomArea*0.003;
         this.ceilingLampHeight = centreY*0.2;
 
@@ -23,7 +23,7 @@ public class CeilingLamp extends SceneGraph{
     @Override
     public void transform(GL2 gl) {
         super.transform(gl);
-        gl.glRotated(90, 1, 0, 0);
+        gl.glRotated(90, -1, 0, 0);
     }
 
     @Override
