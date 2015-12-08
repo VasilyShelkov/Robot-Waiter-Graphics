@@ -3,6 +3,7 @@ package main;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
+import notmine.Camera;
 
 import java.awt.*;
 import java.awt.event.*;

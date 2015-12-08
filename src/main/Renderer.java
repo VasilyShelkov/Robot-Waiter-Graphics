@@ -5,6 +5,7 @@ import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.gl2.GLUT;
 
 import notmine.Axes;
+import notmine.Camera;
 import scene.SceneManager;
 
 /**

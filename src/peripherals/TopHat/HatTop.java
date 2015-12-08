@@ -17,7 +17,7 @@ public class HatTop extends SceneGraph {
         super(0, brimHeight, 0, new Obsidian());
         this.topRadius = topRadius;
         this.topHeight = topHeight;
-        this.slices = slices;
+        this.slices = slices + 30;
 
         addChild(new HatSpotLight(topRadius, topHeight, l));
         addLight(l);

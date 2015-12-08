@@ -13,14 +13,14 @@ import scene.styling.BluePlastic;
 public class Head extends SceneGraph {
 
     private double headHeight;
-    private double headXLean;
-    private double headZLean;
+    private double headLean;
+    private double headTilt;
     int slices;
 
     public Head(double x, double y, double z, double headHeight, double bodyLean, int slices, Texture noseTexture, Light l) {
         super(x, y, z, new BluePlastic());
         this.headHeight = headHeight;
-        this.headXLean = -bodyLean;
+        this.headLean = -bodyLean;
         this.slices = slices;
 
         //Hat
@@ -52,15 +52,15 @@ public class Head extends SceneGraph {
     @Override
     public void transform(GL2 gl) {
         super.transform(gl);
-        gl.glRotated(headXLean, 1, 0, 0);
-        gl.glRotated(headZLean, 0, 0, 1);
+        gl.glRotated(headLean, 1, 0, 0);
+        gl.glRotated(headTilt, 0, 0, 1);
     }
 
-    public void setHeadXLean(double headLean) {
-        this.headXLean = headLean;
+    public void setHeadLean(double headLean) {
+        this.headLean = headLean;
     }
 
-    public void setHeadZLean(double headLean) {
-        this.headZLean = headLean;
+    public void setHeadTilt(double headTilt) {
+        this.headTilt = headTilt;
     }
 }

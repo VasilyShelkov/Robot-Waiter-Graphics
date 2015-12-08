@@ -13,8 +13,8 @@ public class Forearm extends SceneGraph{
     private final double forearmLength;
     private final double forearmRadius;
     private final int slates;
-    private double foreArmXLean;
-    private double foreArmZLean;
+    private double foreArmLean;
+    private double foreArmTilt;
 
     public Forearm(double forearmLength, double armRadius, int slates, double forearmRotation, double armYRotation, Tray tray) {
         super(0,0,armRadius, new Bronze());
@@ -39,15 +39,15 @@ public class Forearm extends SceneGraph{
     @Override
     public void transform(GL2 gl) {
         super.transform(gl);
-        gl.glRotated(foreArmXLean, 0, -1, 0);
-        gl.glRotated(foreArmZLean, -1, 0, 0);
+        gl.glRotated(foreArmLean, 0, -1, 0);
+        gl.glRotated(foreArmTilt, -1, 0, 0);
     }
 
-    public void stabilizeXForeArm(double foreArmLeanXCompensation){
-        this.foreArmXLean = foreArmLeanXCompensation;
+    public void stabilizeForeArmLean(double foreArmLeanCompensation){
+        this.foreArmLean = foreArmLeanCompensation;
     }
 
-    public void stabilizeZForeArm(double foreArmLeanZCompensation) {
-        this.foreArmZLean = foreArmLeanZCompensation;
+    public void stabilizeForeArmTilt(double foreArmTiltCompensation) {
+        this.foreArmTilt = foreArmTiltCompensation;
     }
 }

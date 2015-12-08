@@ -25,7 +25,7 @@ A Java OpenGL replayable animation which shows a robot holding some drinks movin
   -	Set down items onto table…
   -	Buttons to start/stop/reset the animation
 
-### 4.	main.Camera should point towards center of room, user should be able to use the mouse to rotate the camera around the scene.
+### 4.	notmine.Camera should point towards center of room, user should be able to use the mouse to rotate the camera around the scene.
 
 ### 5.	Add the ability to switch to the view of the robot.
 

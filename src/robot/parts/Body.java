@@ -16,6 +16,7 @@ public class Body extends SceneGraph {
     private double bodyRotation;
     private int sphereSlices;
     private GLUquadric quadric;
+    private boolean forward;
 
     public Body(double bodyHeight, int slices, Texture t) {
         super(0,0,0, new BluePlastic());
@@ -47,9 +48,19 @@ public class Body extends SceneGraph {
 
     @Override
     public void update(GL2 gl) {
-        if(speed < 10){
-            speed += 1;
+        if(forward) {
+            bodyRotation += 30*speed;
+        } else{
+            bodyRotation -= 30*speed;
         }
-        bodyRotation += speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+
+    public void setDirection(boolean direction) {
+        this.forward = direction;
     }
 }

@@ -1,4 +1,4 @@
-package main;
+package notmine;
 
 import com.jogamp.opengl.glu.GLU;
 

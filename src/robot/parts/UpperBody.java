@@ -16,9 +16,11 @@ public class UpperBody extends SceneGraph {
     private final double upperBodyHeight;
     private Head head;
     private Arm leftArm;
-    private double bodyXLean;
-    private double bodyZLean;
+    private double bodyLean;
+    private double bodyTilt;
+    public double speed;
     private final int slices;
+    private boolean forward;
 
     public UpperBody(double height, double bodyHeight, int slices, Texture robotNoseTex, Light l) {
         super(0, bodyHeight*0.9, 0, new BluePlastic());
@@ -41,7 +43,7 @@ public class UpperBody extends SceneGraph {
 
         //head
         double headHeight = height*0.4;
-        head = new Head(0, this.upperBodyHeight * 0.8 + headHeight, 0, bodyRadius * 1.2, bodyXLean, slices, robotNoseTex, l);
+        head = new Head(0, this.upperBodyHeight * 0.8 + headHeight, 0, bodyRadius * 1.2, bodyLean, slices, robotNoseTex, l);
         addChild(head);
     }
 
@@ -57,23 +59,31 @@ public class UpperBody extends SceneGraph {
     public void transform(GL2 gl) {
         super.transform(gl);
         gl.glTranslated(0,-bodyHeight,0);
-        gl.glRotated(bodyXLean %30, 1, 0, 0);
-        gl.glRotated(bodyZLean%30, 0, 0, 1);
+        gl.glRotated(bodyLean, 1, 0, 0);
+        gl.glRotated(bodyTilt, 0, 0, 1);
         gl.glTranslated(0,bodyHeight,0);
     }
 
     @Override
     public void update(GL2 gl) {
         super.update(gl);
-        bodyXLean++;
-        bodyZLean++;
-        if (bodyXLean > 30){
-            bodyXLean = 0;
-            bodyZLean = 0;
+        if(forward){
+            bodyLean = 30*speed;
+        } else{
+            bodyLean = -30*speed;
         }
-        head.setHeadXLean(-bodyXLean);
-        head.setHeadZLean(-bodyZLean);
-        leftArm.getJoint().getForearm().stabilizeXForeArm(-bodyXLean);
-        leftArm.getJoint().getForearm().stabilizeZForeArm(-bodyZLean);
+        head.setHeadLean(-bodyLean);
+        head.setHeadTilt(-bodyTilt);
+        leftArm.getJoint().getForearm().stabilizeForeArmLean(-bodyLean);
+        leftArm.getJoint().getForearm().stabilizeForeArmTilt(-bodyTilt);
+    }
+
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public void setDirection(boolean direction) {
+        this.forward = direction;
     }
 }
