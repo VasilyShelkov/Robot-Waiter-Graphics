@@ -9,14 +9,7 @@ import scene.SceneGraph;
  */
 public class HatSpotLight extends SceneGraph {
     public HatSpotLight(double topRadius, double topHeight, Light l) {
-        super(0, topHeight/2, topRadius);
-
+        super(0, topHeight/2, topRadius*0.8);
         this.addLight(l);
     }
-
-//    @Override
-//    public void transform(GL2 gl) {
-//        super.transform(gl);
-//        gl.glRotated(180, 1, 0, 0);
-//    }
 }

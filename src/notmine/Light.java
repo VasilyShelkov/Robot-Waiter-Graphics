@@ -11,6 +11,8 @@ package notmine; /**
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.util.gl2.GLUT;
 
+//Vasia Shelkov has made class smaller depedning on requirements. Code has only been added or removed, none of the existing
+//code was edited.
 public class Light implements Cloneable {
 
   public static final float[] DEFAULT_POSITION = {0.0f,12.0f,0.0f,1.0f};
@@ -36,10 +38,6 @@ public class Light implements Cloneable {
   /**
    * Constructors
    */
-//  public Light(int i, boolean show) {
-//    this(i, DEFAULT_POSITION, DEFAULT_AMBIENT, WHITE_LIGHT, WHITE_LIGHT, true, show);
-//  }
-  
   public Light(int i, float[] position, boolean show, double lightRadius) {
     this(i, position, DEFAULT_AMBIENT, WHITE_LIGHT, WHITE_LIGHT, true, show, lightRadius);
   }
@@ -130,6 +128,7 @@ public class Light implements Cloneable {
     gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_EMISSION, matEmission, 0);
     gl.glPushMatrix();
       gl.glTranslated(position[0], position[1], position[2]);
+      //Vasia changed it so that the radius of the lights can be defined
       glut.glutSolidSphere(this.lightRadius, 10,10);
     gl.glPopMatrix();
   }

@@ -33,26 +33,26 @@ public class SceneManager {
         // Create room Spotlights
         float[] spotlightInitialPosition = {0,0,0,1};       // Initially place spotlight at origin
         spotLight1 = new Light(GL2.GL_LIGHT3, spotlightInitialPosition, true, 0.3);
-        float[] direction2 = {0f,0f,-1f};    // Initial direction for spotlight
+        float[] direction2 = {0f,0f,-1f};    //direction for spotlight
         spotLight1.makeSpotlight(direction2, 20f);
 
         spotLight2 = new Light(GL2.GL_LIGHT4, spotlightInitialPosition, true, 0.3);
-        float[] direction3 = {0f,0f,-1f};    // Initial direction for spotlight
+        float[] direction3 = {0f,0f,-1f};    //direction for spotlight
         spotLight2.makeSpotlight(direction3, 20f);
 
         //create robot Spotlight
         robot1light = new Light(GL2.GL_LIGHT5, spotlightInitialPosition, true, 0.5);
-        float[] direction4 = {0f,-1f,1f};    // Initial direction for spotlight
+        float[] direction4 = {0f,-1f,1f};    //direction for spotlight
         robot1light.makeSpotlight(direction4, 20f);
 
         //create robot Spotlight
         robot2light = new Light(GL2.GL_LIGHT6, spotlightInitialPosition, true, 0.5);
-        float[] direction5 = {0f,-1f,1f};    // Initial direction for spotlight
+        float[] direction5 = {0f,-1f,1f};    //direction for spotlight
         robot2light.makeSpotlight(direction5, 20f);
     }
 
     public void createGraph(GL2 gl) {
-        Room room = new Room(gl, 40, 15, 55, spotLight1, spotLight2);
+        Room room = new Room(gl, 40, 15, 60, spotLight1, spotLight2);
         room.addLight(mainLight1);
         room.addLight(mainLight2);
         room.initialiseDisplayLists(gl);

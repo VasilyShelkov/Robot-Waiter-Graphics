@@ -13,7 +13,7 @@ public class HorizontalPlane extends Plane {
     private final double centreY;
 
     public HorizontalPlane(double centreX, double centreY, double centreZ,
-                           double width, double depth, int xSlices, int zSlices, Texture t) {
+                           double width, double depth, int xSlices, int zSlices, int[] normals, Texture t) {
         this.centreY = centreY;
         int quadOffset = 0;
         double startX = centreX-(width/2.0);
@@ -31,7 +31,7 @@ public class HorizontalPlane extends Plane {
                 Vertex v3 = new Vertex(startX + ((i + 1) * stepX), 0, startZ + (j * stepZ));
                 Vertex v4 = new Vertex(startX + (i * stepX), 0, startZ + (j * stepZ));
 
-                quads[quadOffset] = new Quad(v1, v2, v3, v4, t);
+                quads[quadOffset] = new Quad(v1, v2, v3, v4, normals, t);
 
                 quadOffset++;
             }
@@ -40,9 +40,9 @@ public class HorizontalPlane extends Plane {
 
     public HorizontalPlane(double centreX, double centreY, double centreZ,
                            double width, double depth,
-                           int xSlices, int zSlices, Texture t,
+                           int xSlices, int zSlices, int[] normals, Texture t,
                            Light spotlight1, Light spotlight2) {
-        this(centreX, centreY, centreZ, width, depth, xSlices, zSlices, t);
+        this(centreX, centreY, centreZ, width, depth, xSlices, zSlices, normals, t);
 
         //left Ceiling Light
         CeilingLamp ceilingLamp1 = new CeilingLamp(centreX - (width / 4), centreY, centreZ, width, spotlight1);
