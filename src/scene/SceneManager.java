@@ -20,7 +20,7 @@ public class SceneManager {
 
     private SceneGraph root;
     private Light mainLight1, mainLight2, spotLight1, spotLight2, robot1light, robot2light;
-    private RobotAnimationManager robotAnimationManger1;
+    private RobotAnimationManager robotAnimationManger1, robotAnimationManger2;
 
     public SceneManager(){
         root = new SceneGraph();
@@ -53,7 +53,7 @@ public class SceneManager {
     }
 
     public void createGraph(GL2 gl) {
-        Room room = new Room(gl, 40, 15, 60, spotLight1, spotLight2);
+        Room room = new Room(gl, 40, 20, 60, spotLight1, spotLight2);
         room.addLight(mainLight1);
         room.addLight(mainLight2);
         room.initialiseDisplayLists(gl);
@@ -63,13 +63,13 @@ public class SceneManager {
         Robot robot1 = new Robot(gl, 3, 15, 0, 20, 230, robot1light, robotAnimationManger1);
         root.addChild(robot1);
 
-//        robotAnimationManger2 = createRobot2AnimationManager();
-//        Robot robot2 = new Robot(gl, 3, -15, 0, -20, 50, robot2light, robotAnimationManger2);
-//        UpperBody robot2UpperBody = robot2.getUpperBody();
-//        robot2UpperBody.setMaterial(new Ruby());
-//        robot2UpperBody.getHead().setMaterial(new Ruby());
-//        robot2.getLowerLowerBody().setBodyTexture(robot2.loadTexture(gl, "textures" + File.separator + "firerivets.jpg"));
-//        root.addChild(robot2);
+        robotAnimationManger2 = createRobot2AnimationManager();
+        Robot robot2 = new Robot(gl, 3, -15, 0, -20, 50, robot2light, robotAnimationManger2);
+        UpperBody robot2UpperBody = robot2.getUpperBody();
+        robot2UpperBody.setMaterial(new Ruby());
+        robot2UpperBody.getHead().setMaterial(new Ruby());
+        robot2.getLowerLowerBody().setBodyTexture(robot2.loadTexture(gl, "textures" + File.separator + "firerivets.jpg"));
+        root.addChild(robot2);
     }
 
     public void renderGraph(GL2 gl) {
@@ -107,70 +107,186 @@ public class SceneManager {
         return robotAnimationManger1;
     }
 
+    public RobotAnimationManager getRobotAnimationManger2() {
+        return robotAnimationManger2;
+    }
+
     private RobotAnimationManager createRobot1AnimationManager() {
         ArrayList<KeyFrame> robotAnimationKeyFrames =  new ArrayList<>();
-        robotAnimationKeyFrames.add(new KeyFrame(15, 20, 230, true));
-        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true));
-        robotAnimationKeyFrames.add(new KeyFrame(10, 19, 200, false));
-        robotAnimationKeyFrames.add(new KeyFrame(11, 16, 180, true));
-        robotAnimationKeyFrames.add(new KeyFrame(13, 5, 160, true));
-        robotAnimationKeyFrames.add(new KeyFrame(14, -6, 240, true));
-        robotAnimationKeyFrames.add(new KeyFrame(16, 0, 180, true));
-        robotAnimationKeyFrames.add(new KeyFrame(16, -8, 230, true));
-        robotAnimationKeyFrames.add(new KeyFrame(14, -16, 260, true));
-        robotAnimationKeyFrames.add(new KeyFrame(10, -19, 280, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-3, -20, 320, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-11, -17, 30, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-15, -20, 50, false));
-        robotAnimationKeyFrames.add(new KeyFrame(-14, -16, 345, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-16, -6, 20, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-12, 0, 100, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-8, -2, 180, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-14, 6, 90, false));
-        robotAnimationKeyFrames.add(new KeyFrame(-6, 8, 75, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-13, 12, 135, false));
-        robotAnimationKeyFrames.add(new KeyFrame(4, -3, 135, true));
-        robotAnimationKeyFrames.add(new KeyFrame(0, 0, 90, false));
-        robotAnimationKeyFrames.add(new KeyFrame(4, 2, 70, true));
-        robotAnimationKeyFrames.add(new KeyFrame(6, 4, 50, true));
-        robotAnimationKeyFrames.add(new KeyFrame(11, 7, 20, true));
-        robotAnimationKeyFrames.add(new KeyFrame(10, 11, 330, true));
-        robotAnimationKeyFrames.add(new KeyFrame(5, 17, 260, true));
-        robotAnimationKeyFrames.add(new KeyFrame(15, 20, 230, false));
+        robotAnimationKeyFrames.add(new KeyFrame(15, 20, 230, true,1));
+
+        //first table stop
+        robotAnimationKeyFrames.add(new KeyFrame(8, 13, 260, true,0.8));
+        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,0.6));
+        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,0.4));
+        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,3));
+        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, false,1));
+
+        robotAnimationKeyFrames.add(new KeyFrame(10, 19, 220, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(11, 16, 190, true, 1.2));
+        robotAnimationKeyFrames.add(new KeyFrame(12, 5, 160, true, 1.2));
+
+        //second table stop
+        robotAnimationKeyFrames.add(new KeyFrame(13, -3, 190, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 0.4));
+        robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 0.4));
+        robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(13, -5, 220, false, 1));
+
+        robotAnimationKeyFrames.add(new KeyFrame(16, 0, 180, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(16, -8, 195, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(14, -16, 235, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(10, -20, 260, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-3, -22, 300, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-10, -20, 360, true, 0.6));
+        robotAnimationKeyFrames.add(new KeyFrame(-13, -19, 370, true, 0.5));
+
+
+        //third table stop
+        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 0.3));
+        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, false, 1));
+
+        robotAnimationKeyFrames.add(new KeyFrame(-15, -20, 410, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-15, -16, 345, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-16, -6, 410, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-12, 0, 510, true, 1));
+
+        //first table other side
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -2, 540, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, false, 2));
+        robotAnimationKeyFrames.add(new KeyFrame(-9, -2, 530, false, 2));
+
+        robotAnimationKeyFrames.add(new KeyFrame(-14, 6, 450, true, 2));
+
+        //second table other side
+        robotAnimationKeyFrames.add(new KeyFrame(-8, 8, 435, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, false, 1.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, 9, 465, false, 1.5));
+
+        robotAnimationKeyFrames.add(new KeyFrame(-13, 12, 495, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-9, 8, 495, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-5, 4, 495, true, 1));
+
+
+        //third table other side
+        robotAnimationKeyFrames.add(new KeyFrame(2, -1, 500, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, false, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(2, -3, 480, false, 1.2));
+
+        robotAnimationKeyFrames.add(new KeyFrame(0, 0, 450, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(4, 2, 430, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(6, 4, 410, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(11, 7, 380, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(10, 14, 330, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(5, 17, 260, false, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(15, 20, 230, true, 1));
         return new RobotAnimationManager(robotAnimationKeyFrames);
     }
 
     private RobotAnimationManager createRobot2AnimationManager() {
         ArrayList<KeyFrame> robotAnimationKeyFrames =  new ArrayList<>();
-        robotAnimationKeyFrames.add(new KeyFrame(-15, -20, 50, false));
-        robotAnimationKeyFrames.add(new KeyFrame(-14, -16, 345, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-16, -6, 20, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-12, 0, 100, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-8, -2, 180, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-14, 6, 90, false));
-        robotAnimationKeyFrames.add(new KeyFrame(-6, 8, 75, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-13, 12, 135, false));
-        robotAnimationKeyFrames.add(new KeyFrame(4, -3, 135, true));
-        robotAnimationKeyFrames.add(new KeyFrame(0, 0, 90, false));
-        robotAnimationKeyFrames.add(new KeyFrame(4, 2, 70, true));
-        robotAnimationKeyFrames.add(new KeyFrame(6, 4, 50, true));
-        robotAnimationKeyFrames.add(new KeyFrame(11, 7, 20, true));
-        robotAnimationKeyFrames.add(new KeyFrame(10, 11, 330, true));
-        robotAnimationKeyFrames.add(new KeyFrame(5, 17, 260, true));
-        robotAnimationKeyFrames.add(new KeyFrame(15, 20, 230, false));
-        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true));
-        robotAnimationKeyFrames.add(new KeyFrame(10, 19, 200, false));
-        robotAnimationKeyFrames.add(new KeyFrame(11, 16, 180, true));
-        robotAnimationKeyFrames.add(new KeyFrame(13, 5, 160, true));
-        robotAnimationKeyFrames.add(new KeyFrame(14, -6, 240, true));
-        robotAnimationKeyFrames.add(new KeyFrame(16, 0, 180, true));
-        robotAnimationKeyFrames.add(new KeyFrame(16, -8, 230, true));
-        robotAnimationKeyFrames.add(new KeyFrame(14, -16, 260, true));
-        robotAnimationKeyFrames.add(new KeyFrame(10, -19, 280, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-3, -20, 320, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-11, -17, 30, true));
-        robotAnimationKeyFrames.add(new KeyFrame(-15, -20, 50, false));
+        robotAnimationKeyFrames.add(new KeyFrame(-15, -20, 410, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-15, -16, 345, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-16, -6, 410, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-12, 0, 510, true, 1));
 
+        //first table
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -2, 540, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, false, 2));
+        robotAnimationKeyFrames.add(new KeyFrame(-9, -2, 530, false, 2));
+
+        robotAnimationKeyFrames.add(new KeyFrame(-14, 6, 450, true, 2));
+
+        //second table
+        robotAnimationKeyFrames.add(new KeyFrame(-8, 8, 435, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, false, 1.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, 9, 465, false, 1.5));
+
+        robotAnimationKeyFrames.add(new KeyFrame(-13, 12, 495, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-9, 8, 495, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-5, 4, 495, true, 1));
+
+
+        //third table
+        robotAnimationKeyFrames.add(new KeyFrame(2, -1, 500, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, false, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(2, -3, 480, false, 1.2));
+
+        robotAnimationKeyFrames.add(new KeyFrame(0, 0, 450, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(4, 2, 430, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(6, 4, 410, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(11, 7, 380, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(10, 14, 330, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(5, 17, 260, false, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(15, 20, 230, true, 1));
+
+        //first table stop other side
+        robotAnimationKeyFrames.add(new KeyFrame(8, 13, 260, true,0.8));
+        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,0.6));
+        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,0.4));
+        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,3));
+        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, false,1));
+
+        robotAnimationKeyFrames.add(new KeyFrame(10, 19, 220, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(11, 16, 190, true, 1.2));
+        robotAnimationKeyFrames.add(new KeyFrame(12, 5, 160, true, 1.2));
+
+        //second table stop other side
+        robotAnimationKeyFrames.add(new KeyFrame(13, -3, 190, true, 0.7));
+        robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 0.4));
+        robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 0.4));
+        robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(13, -5, 220, false, 1));
+
+        robotAnimationKeyFrames.add(new KeyFrame(16, 0, 180, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(16, -8, 195, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(14, -16, 235, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(10, -20, 260, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-3, -22, 300, true, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-10, -20, 360, true, 0.6));
+        robotAnimationKeyFrames.add(new KeyFrame(-13, -19, 370, true, 0.5));
+
+
+        //third table stop other side
+        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 0.3));
+        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 0.5));
+        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, false, 1));
+        robotAnimationKeyFrames.add(new KeyFrame(-15, -20, 410, true, 1));
         return new RobotAnimationManager(robotAnimationKeyFrames);
     }
 }

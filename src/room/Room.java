@@ -31,35 +31,35 @@ public class Room extends SceneGraph{
 
         //floor
         Texture floorTexture = loadTexture(gl, "textures" + File.separator + "marble03.bmp");
-        this.floor = new HorizontalPlane(0, width, depth, SLICES*3, SLICES*3, new int[]{0,1,0},
+        this.floor = new HorizontalPlane(0, width+2, depth, SLICES*3, SLICES*3, new int[]{0,1,0},
                 floorTexture, 2, 2);
         addChild(floor);
 
         //roof
         Texture ceilingTexture = loadTexture(gl, "textures" + File.separator + "plank01.bmp");
-        this.roof = new HorizontalPlane(height, width, depth, SLICES, SLICES, new int[]{0,1,0},
+        this.roof = new HorizontalPlane(height, width+2, depth, SLICES, SLICES, new int[]{0,1,0},
                 ceilingTexture, 5, 5,
                 spotlight1, spotlight2);
         addChild(roof);
 
         Texture wallTexture = loadTexture(gl, "textures" + File.separator + "snowflake4.jpg");
         //wall1x
-        this.wall = new VerticalXPlane(0, 0, 0-(depth/2), width, height, SLICES, SLICES, new int[]{0,0,1},
+        this.wall = new VerticalXPlane(0, 0, 0-(depth/2), width+2, height, SLICES, SLICES, new int[]{0,0,1},
                 wallTexture, 8, 3);
         addChild(wall);
 
         //wall2x
-        this.wall2 = new VerticalXPlane(0, 0, 0+(depth/2), width, height, SLICES, SLICES, new int[]{0,0,-1},
+        this.wall2 = new VerticalXPlane(0, 0, 0+(depth/2), width+2, height, SLICES, SLICES, new int[]{0,0,-1},
                 wallTexture, 8, 3);
         addChild(wall2);
 
         //wall3z
-        this.wall3 = new VerticalZPlane(0-(width/2), 0, 0, depth, height, SLICES, SLICES, new int[]{1,0,0},
+        this.wall3 = new VerticalZPlane(0-((width+2)/2), 0, 0, depth, height, SLICES, SLICES, new int[]{1,0,0},
                 wallTexture, 12, 3);
         addChild(wall3);
 
         //wall4z
-        this.wall4 = new VerticalZPlane(0+(width/2), 0, 0, depth, height, SLICES, SLICES, new int[]{-1,0,0},
+        this.wall4 = new VerticalZPlane(0+((width+2)/2), 0, 0, depth, height, SLICES, SLICES, new int[]{-1,0,0},
                 wallTexture, 12, 3);
         addChild(wall4);
 

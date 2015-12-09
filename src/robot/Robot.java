@@ -69,10 +69,13 @@ public class Robot extends SceneGraph {
         rotate = robotAnimations.getRotation();
 
         forward = robotAnimations.getDirection();
+        double lean = robotAnimations.getLean();
 
         lowerLowerBody.setDirection(forward);
+        lowerLowerBody.setSpeed(lean);
 //        System.out.println(acceleration);
         upperBody.setDirection(forward);
+        upperBody.setSpeed(lean);
 //
 //        setTransformAngles(this.rotate);
     }

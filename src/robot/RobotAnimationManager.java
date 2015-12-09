@@ -1,6 +1,7 @@
 package robot;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by vasily on 08/12/15.
@@ -14,6 +15,8 @@ public class RobotAnimationManager {
     private double zPos;
     private double rotation;
     private boolean direction;
+
+    private double lean;
 
     public RobotAnimationManager(ArrayList<KeyFrame> keyFrames) {
         this.keyFrames = keyFrames;
@@ -66,7 +69,7 @@ public class RobotAnimationManager {
         }
 
         double currentSeconds = getSeconds();
-        int duration = 1;
+        double duration = keyFrames.get(currentKeyFrameIndex).getDuration();
         double normalisedTime = (currentSeconds - localTime)/duration;
         xPos = quadraticInterpolation(normalisedTime,
                 keyFrames.get(preCurrentKeyFrameIndex).getxPosition(),
@@ -84,6 +87,10 @@ public class RobotAnimationManager {
                 keyFrames.get(nextKeyFramesIndex).getRotation(),
                 keyFrames.get(preCurrentKeyFrameIndex).getRotation());
         direction = keyFrames.get(currentKeyFrameIndex).isForward();
+        if(normalisedTime > 0.5) {
+            normalisedTime = 1-normalisedTime;
+        }
+        lean = 0;//normalisedTime*2;
 
         if (currentSeconds - localTime > duration) {
             localTime = currentSeconds;
@@ -122,5 +129,9 @@ public class RobotAnimationManager {
 
     public boolean getDirection() {
         return direction;
+    }
+
+    public double getLean() {
+        return lean;
     }
 }
