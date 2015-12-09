@@ -33,4 +33,6 @@ A Java OpenGL replayable animation which shows a robot holding some drinks movin
 
 Commands:
 
-Run : java -cp .:./Robot-Waiter-Graphics/:./lib/gluegen-rt.jar:./lib/jogl-all.jar: main.MainFrame
+Run - 
+linux: java -cp .:./Robot-Waiter-Graphics/:./lib/gluegen-rt.jar:./lib/jogl-all.jar: main.MainFrame
+windows: java -cp .;./Robot-Waiter-Graphics/;./lib/gluegen-rt.jar;./lib/jogl-all.jar; main.MainFrame
