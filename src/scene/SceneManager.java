@@ -25,28 +25,28 @@ public class SceneManager {
         root = new SceneGraph();
 
         // Create a default lights
-        float[] position = {0, 13, -12, 1};
-        mainLight1 = new Light(GL2.GL_LIGHT0, position, false);
-        float[] position1 = {0, 13, 12, 1};
-        mainLight2 = new Light(GL2.GL_LIGHT1, position1, false);
+        float[] position = {0, 7, 13, 1};
+        mainLight1 = new Light(GL2.GL_LIGHT0, position, false, 0);
+        float[] position1 = {0, 7, -13, 1};
+        mainLight2 = new Light(GL2.GL_LIGHT1, position1, false, 0);
 
         // Create room Spotlights
         float[] spotlightInitialPosition = {0,0,0,1};       // Initially place spotlight at origin
-        spotLight1 = new Light(GL2.GL_LIGHT3, spotlightInitialPosition, true);
+        spotLight1 = new Light(GL2.GL_LIGHT3, spotlightInitialPosition, true, 0.3);
         float[] direction2 = {0f,0f,-1f};    // Initial direction for spotlight
         spotLight1.makeSpotlight(direction2, 20f);
 
-        spotLight2 = new Light(GL2.GL_LIGHT4, spotlightInitialPosition, true);
+        spotLight2 = new Light(GL2.GL_LIGHT4, spotlightInitialPosition, true, 0.3);
         float[] direction3 = {0f,0f,-1f};    // Initial direction for spotlight
         spotLight2.makeSpotlight(direction3, 20f);
 
         //create robot Spotlight
-        robot1light = new Light(GL2.GL_LIGHT5, spotlightInitialPosition, true);
+        robot1light = new Light(GL2.GL_LIGHT5, spotlightInitialPosition, true, 0.5);
         float[] direction4 = {0f,-1f,1f};    // Initial direction for spotlight
         robot1light.makeSpotlight(direction4, 20f);
 
         //create robot Spotlight
-        robot2light = new Light(GL2.GL_LIGHT6, spotlightInitialPosition, true);
+        robot2light = new Light(GL2.GL_LIGHT6, spotlightInitialPosition, true, 0.5);
         float[] direction5 = {0f,-1f,1f};    // Initial direction for spotlight
         robot2light.makeSpotlight(direction5, 20f);
     }

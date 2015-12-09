@@ -9,6 +9,7 @@ import notmine.Light;
 import peripherals.table.Table;
 import scene.SceneGraph;
 import scene.styling.Chrome;
+import scene.styling.Silver;
 
 import java.io.File;
 
@@ -26,7 +27,7 @@ public class Room extends SceneGraph{
     private final HorizontalPlane roof;
 
     public Room(GL2 gl, int width, int height, int depth, Light spotlight1, Light spotlight2) {
-        super(0,0,0, new Chrome());
+        super(0,0,0, new Silver());
 
         //floor
         Texture floorTexture = loadTexture(gl, "textures" + File.separator + "marble10.bmp");
