@@ -16,10 +16,9 @@ public class Renderer implements GLEventListener {
     private static final float FAR_CLIP=100.0f;
 
     private GLU glu;
-
     private Camera camera;
-
     private SceneManager scene;
+    private boolean continuousAnimation;
 
     public Renderer(int width, int height) {
         this.width = width;
@@ -57,7 +56,9 @@ public class Renderer implements GLEventListener {
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT|GL2.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
         camera.view(glu);
-//        scene.updateGraph(gl);
+        if(continuousAnimation){
+            scene.updateGraph(gl);
+        }
         scene.renderGraph(gl);
     }
 
@@ -102,5 +103,9 @@ public class Renderer implements GLEventListener {
 
     public int getHeight() {
         return height;
+    }
+
+    public void setContinuousAnimation(boolean continuousAnimation) {
+        this.continuousAnimation = continuousAnimation;
     }
 }

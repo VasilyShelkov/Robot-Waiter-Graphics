@@ -30,29 +30,36 @@ public class Room extends SceneGraph{
         super(0,0,0, new Silver());
 
         //floor
-        Texture floorTexture = loadTexture(gl, "textures" + File.separator + "marble10.bmp");
-        this.floor = new HorizontalPlane(0, width, depth, SLICES, SLICES, new int[]{0,1,0}, floorTexture);
+        Texture floorTexture = loadTexture(gl, "textures" + File.separator + "plank01.bmp");
+        this.floor = new HorizontalPlane(0, width, depth, SLICES, SLICES, new int[]{0,1,0},
+                floorTexture, 2, 2);
         addChild(floor);
 
         //roof
-        this.roof = new HorizontalPlane(height, width, depth, SLICES, SLICES, new int[]{0,1,0}, floorTexture, spotlight1, spotlight2);
+        this.roof = new HorizontalPlane(height, width, depth, SLICES, SLICES, new int[]{0,1,0},
+                floorTexture, 5, 5,
+                spotlight1, spotlight2);
         addChild(roof);
 
         Texture wallTexture = loadTexture(gl, "textures" + File.separator + "snowflake4.jpg");
         //wall1x
-        this.wall = new VerticalXPlane(0, 0, 0-(depth/2), width, height, 8, 8, new int[]{0,0,1}, wallTexture);
+        this.wall = new VerticalXPlane(0, 0, 0-(depth/2), width, height, SLICES, SLICES, new int[]{0,0,1},
+                wallTexture, 8, 3);
         addChild(wall);
 
         //wall2x
-        this.wall2 = new VerticalXPlane(0, 0, 0+(depth/2), width, height, 8, 8, new int[]{0,0,-1}, wallTexture);
+        this.wall2 = new VerticalXPlane(0, 0, 0+(depth/2), width, height, SLICES, SLICES, new int[]{0,0,-1},
+                wallTexture, 8, 3);
         addChild(wall2);
 
         //wall3z
-        this.wall3 = new VerticalZPlane(0-(width/2), 0, 0, depth, height, SLICES, SLICES, new int[]{1,0,0}, wallTexture);
+        this.wall3 = new VerticalZPlane(0-(width/2), 0, 0, depth, height, SLICES, SLICES, new int[]{1,0,0},
+                wallTexture, 12, 3);
         addChild(wall3);
 
         //wall4z
-        this.wall4 = new VerticalZPlane(0+(width/2), 0, 0, depth, height, SLICES, SLICES, new int[]{-1,0,0}, wallTexture);
+        this.wall4 = new VerticalZPlane(0+(width/2), 0, 0, depth, height, SLICES, SLICES, new int[]{-1,0,0},
+                wallTexture, 12, 3);
         addChild(wall4);
 
         //3 tables

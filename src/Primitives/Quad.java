@@ -14,7 +14,7 @@ public class Quad {
     private Texture texture;
 
     public Quad() {
-        vertices[0] = vertices[1] = vertices[2] = vertices[3] = new Vertex(0,0,0);
+        vertices[0] = vertices[1] = vertices[2] = vertices[3] = new Vertex(0,0,0,0,0);
         normal[0] = normal[1] = normal[2] = normal[3] = 0;
         normalCoords = new int[]{0, 1, 0};
     }
@@ -36,16 +36,16 @@ public class Quad {
 
         gl.glBegin(GL2.GL_QUADS);
             gl.glNormal3d(normalCoords[0],normalCoords[1],normalCoords[2]);
-            gl.glTexCoord2f(0, 0);
+            gl.glTexCoord2d(vertices[0].getU(), vertices[0].getV());
             gl.glVertex3d(vertices[0].getX(), vertices[0].getY(), vertices[0].getZ());
 
-            gl.glTexCoord2f(1f, 0);
+            gl.glTexCoord2d(vertices[1].getU(), vertices[1].getV());
             gl.glVertex3d(vertices[1].getX(), vertices[1].getY(), vertices[1].getZ());
 
-            gl.glTexCoord2f(1f, 1f);
+            gl.glTexCoord2d(vertices[2].getU(), vertices[2].getV());
             gl.glVertex3d(vertices[2].getX(), vertices[2].getY(), vertices[2].getZ());
 
-            gl.glTexCoord2f(0, 1f);
+            gl.glTexCoord2d(vertices[3].getU(), vertices[3].getV());
             gl.glVertex3d(vertices[3].getX(), vertices[3].getY(), vertices[3].getZ());
         gl.glEnd();
 

@@ -11,7 +11,7 @@ import java.awt.event.*;
 /**
  * Created by vasily on 23/11/15.
  */
-public class MainFrame extends Frame implements MouseMotionListener, ItemListener{
+public class MainFrame extends Frame implements MouseMotionListener, ItemListener, ActionListener{
     public final static int CANVAS_WIDTH = 640;
     public final static int CANVAS_HEIGHT = 400;
     public final static int FRAME_WIDTH = 800;
@@ -50,24 +50,19 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
         checkSpotLight = addCheckbox(p1, "Spotlights on", this);
         checkRobotLight = addCheckbox(p1, "Robotlight on", this);
         p.add(p1);
-//        p1 = new Panel(new GridLayout(4,1));
-//        Button rotate = new Button("Rotate light");
-//        rotate.setActionCommand("Rotate");
-//        rotate.addActionListener(this);
-//        p1.add(rotate);
-//        startAnim = new Button("Start animation");
-//        startAnim.setActionCommand("StartAnim");
-//        startAnim.addActionListener(this);
-//        p1.add(startAnim);
-//        pauseAnim = new Button("Pause animation");
-//        pauseAnim.setActionCommand("PauseAnim");
-//        pauseAnim.addActionListener(this);
-//        p1.add(pauseAnim);
-//        resetScene = new Button("Reset scene");
-//        resetScene.setActionCommand("ResetScene");
-//        resetScene.addActionListener(this);
-//        p1.add(resetScene);
-//        p.add(p1);
+        Button startAnim = new Button("Start animation");
+        startAnim.setActionCommand("StartAnim");
+        startAnim.addActionListener(this);
+        p1.add(startAnim);
+        Button pauseAnim = new Button("Pause animation");
+        pauseAnim.setActionCommand("PauseAnim");
+        pauseAnim.addActionListener(this);
+        p1.add(pauseAnim);
+        Button resetScene = new Button("Reset scene");
+        resetScene.setActionCommand("ResetScene");
+        resetScene.addActionListener(this);
+        p1.add(resetScene);
+        p.add(p1);
         add(p, "East");
 
         //not needed if repainting transformations
@@ -85,6 +80,19 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
     public static void main(String[] args) {
         MainFrame gl = new MainFrame();
         gl.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equalsIgnoreCase("startanim")) {
+            renderer.setContinuousAnimation(true);
+        }
+        else if (e.getActionCommand().equalsIgnoreCase("pauseanim")) {
+            renderer.setContinuousAnimation(false);
+        }
+//        else if (e.getActionCommand().equalsIgnoreCase("resetscene")) {
+//            reset();
+//        }
     }
 
     @Override
