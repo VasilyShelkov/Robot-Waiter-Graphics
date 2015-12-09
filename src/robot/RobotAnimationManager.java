@@ -36,7 +36,13 @@ public class RobotAnimationManager {
     }
 
     public void resetAnimation() {
-
+        localTime = getSeconds();
+        savedLocalTime = 0;
+        xPos = keyFrames.get(0).getxPosition();
+        zPos = keyFrames.get(0).getzPosition();
+        rotation = keyFrames.get(0).getRotation();
+        direction = keyFrames.get(0).isForward();
+        nextKeyFramesIndex = 1;
     }
 
     public void moveToNextFrame() {

@@ -101,9 +101,11 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
             renderer.setContinuousAnimation(false);
             renderer.getScene().getRobotAnimationManger1().pauseAnimation();
         }
-//        else if (e.getActionCommand().equalsIgnoreCase("resetscene")) {
-//            reset();
-//        }
+        else if (e.getActionCommand().equalsIgnoreCase("resetscene")) {
+            renderer.getScene().getRobotAnimationManger1().resetAnimation();
+            renderer.setLastUpdate(true);
+            renderer.setContinuousAnimation(false);
+        }
     }
 
     @Override
