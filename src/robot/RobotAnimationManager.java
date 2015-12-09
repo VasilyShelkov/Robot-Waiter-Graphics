@@ -48,6 +48,8 @@ public class RobotAnimationManager {
         rotation = keyFrames.get(0).getRotation();
         direction = keyFrames.get(0).isForward();
         nextKeyFramesIndex = 1;
+	tilt = 0;
+	speed = 0;
     }
 
     public void moveToNextFrame() {

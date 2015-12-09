@@ -4,7 +4,7 @@ import com.jogamp.opengl.*;
 import com.jogamp.opengl.glu.GLU;
 
 import notmine.Camera;
-import scene.SceneManager;
+import main.SceneManager;
 
 /**
  * Created by vasily on 24/11/15.
@@ -63,6 +63,7 @@ public class Renderer implements GLEventListener {
         } else {
             if (lastUpdate) {
                 scene.updateGraph(gl);
+		scene.updateGraph(gl);
                 lastUpdate = !lastUpdate;
             }
         }
