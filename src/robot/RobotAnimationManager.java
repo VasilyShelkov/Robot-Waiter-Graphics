@@ -27,6 +27,18 @@ public class RobotAnimationManager {
         nextKeyFramesIndex = 1;
     }
 
+    public void startAnimation() {
+        localTime = getSeconds() - savedLocalTime;
+    }
+
+    public void pauseAnimation() {
+        savedLocalTime = getSeconds() - localTime;
+    }
+
+    public void resetAnimation() {
+
+    }
+
     public void moveToNextFrame() {
         int postNextKeyFrameIndex = nextKeyFramesIndex + 1;
         if (postNextKeyFrameIndex > keyFrames.size()-1){

@@ -20,6 +20,7 @@ public class SceneManager {
 
     private SceneGraph root;
     private Light mainLight1, mainLight2, spotLight1, spotLight2, robot1light, robot2light;
+    private RobotAnimationManager robotAnimationManger1;
 
     public SceneManager(){
         root = new SceneGraph();
@@ -58,11 +59,11 @@ public class SceneManager {
         room.initialiseDisplayLists(gl);
         root.addChild(room);
 
-        RobotAnimationManager robotAnimationManger1 = createRobot1AnimationManager();
+        robotAnimationManger1 = createRobot1AnimationManager();
         Robot robot1 = new Robot(gl, 3, 15, 0, 20, 230, robot1light, robotAnimationManger1);
         root.addChild(robot1);
 
-//        RobotAnimationManager robotAnimationManger2 = createRobot2AnimationManager();
+//        robotAnimationManger2 = createRobot2AnimationManager();
 //        Robot robot2 = new Robot(gl, 3, -15, 0, -20, 50, robot2light, robotAnimationManger2);
 //        UpperBody robot2UpperBody = robot2.getUpperBody();
 //        robot2UpperBody.setMaterial(new Ruby());
@@ -100,6 +101,10 @@ public class SceneManager {
 
     public Light getRobot2light() {
         return robot2light;
+    }
+
+    public RobotAnimationManager getRobotAnimationManger1() {
+        return robotAnimationManger1;
     }
 
     private RobotAnimationManager createRobot1AnimationManager() {

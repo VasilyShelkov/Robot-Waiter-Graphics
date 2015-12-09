@@ -44,12 +44,21 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
             }
         });
 
+        MenuBar menuBar = new MenuBar();
+        setMenuBar(menuBar);
+        Menu fileMenu = new Menu("File");
+        MenuItem quitItem = new MenuItem("Quit");
+        quitItem.addActionListener(this);
+        fileMenu.add(quitItem);
+        menuBar.add(fileMenu);
+
         Panel p = new Panel(new GridLayout(2,1));
         Panel p1 = new Panel(new GridLayout(5,1));
         checkMainLight = addCheckbox(p1, "MainLights on", this);
         checkSpotLight = addCheckbox(p1, "Spotlights on", this);
         checkRobotLight = addCheckbox(p1, "Robotlight on", this);
         p.add(p1);
+        p1 = new Panel(new GridLayout(4,1));
         Button startAnim = new Button("Start animation");
         startAnim.setActionCommand("StartAnim");
         startAnim.addActionListener(this);
@@ -86,9 +95,11 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equalsIgnoreCase("startanim")) {
             renderer.setContinuousAnimation(true);
+            renderer.getScene().getRobotAnimationManger1().startAnimation();
         }
         else if (e.getActionCommand().equalsIgnoreCase("pauseanim")) {
             renderer.setContinuousAnimation(false);
+            renderer.getScene().getRobotAnimationManger1().pauseAnimation();
         }
 //        else if (e.getActionCommand().equalsIgnoreCase("resetscene")) {
 //            reset();

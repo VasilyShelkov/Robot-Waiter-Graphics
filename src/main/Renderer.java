@@ -19,6 +19,7 @@ public class Renderer implements GLEventListener {
     private Camera camera;
     private SceneManager scene;
     private boolean continuousAnimation;
+    private boolean animationStarted;
 
     public Renderer(int width, int height) {
         this.width = width;
@@ -58,6 +59,9 @@ public class Renderer implements GLEventListener {
         camera.view(glu);
         if(continuousAnimation){
             scene.updateGraph(gl);
+//            scene.getRobotAnimationManger1().startAnimation();
+        } else {
+//            scene.getRobotAnimationManger1().pauseAnimation();
         }
         scene.renderGraph(gl);
     }

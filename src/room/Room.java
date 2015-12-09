@@ -30,14 +30,15 @@ public class Room extends SceneGraph{
         super(0,0,0, new Silver());
 
         //floor
-        Texture floorTexture = loadTexture(gl, "textures" + File.separator + "plank01.bmp");
-        this.floor = new HorizontalPlane(0, width, depth, SLICES, SLICES, new int[]{0,1,0},
+        Texture floorTexture = loadTexture(gl, "textures" + File.separator + "marble03.bmp");
+        this.floor = new HorizontalPlane(0, width, depth, SLICES*3, SLICES*3, new int[]{0,1,0},
                 floorTexture, 2, 2);
         addChild(floor);
 
         //roof
+        Texture ceilingTexture = loadTexture(gl, "textures" + File.separator + "plank01.bmp");
         this.roof = new HorizontalPlane(height, width, depth, SLICES, SLICES, new int[]{0,1,0},
-                floorTexture, 5, 5,
+                ceilingTexture, 5, 5,
                 spotlight1, spotlight2);
         addChild(roof);
 
