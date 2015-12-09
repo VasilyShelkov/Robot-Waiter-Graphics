@@ -36,3 +36,7 @@ Commands:
 Run - 
 linux: java -cp .:./Robot-Waiter-Graphics/:./lib/gluegen-rt.jar:./lib/jogl-all.jar: main.MainFrame
 windows: java -cp .;./Robot-Waiter-Graphics/;./lib/gluegen-rt.jar;./lib/jogl-all.jar; main.MainFrame
+
+Build - 
+linux: javac -cp ./src:./lib/gluegen-rt.jar:./lib/jogl-all.jar: -d out/production/Robot-Waiter-Graphics/ src/main/MainFrame.java
+windows: javac -cp ./src;./lib/gluegen-rt.jar;./lib/jogl-all.jar; -d out/production/Robot-Waiter-Graphics/ src/main/MainFrame.java
