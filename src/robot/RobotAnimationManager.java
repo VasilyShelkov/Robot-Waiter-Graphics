@@ -1,7 +1,6 @@
 package robot;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by vasily on 08/12/15.
@@ -9,20 +8,21 @@ import java.util.Random;
 public class RobotAnimationManager {
     private ArrayList<KeyFrame> keyFrames = new ArrayList<>();
     private int nextKeyFramesIndex;
-    private double globalStartTime, localTime, savedLocalTime;
+    private double localTime, savedLocalTime;
 
     private double xPos;
     private double zPos;
     private double rotation;
     private boolean direction;
 
-    private double lean;
+    private double speed;
+
+    private double tilt;
 
     public RobotAnimationManager(ArrayList<KeyFrame> keyFrames) {
         this.keyFrames = keyFrames;
         savedLocalTime = 0;
         localTime = getSeconds();
-        globalStartTime = getSeconds();
         xPos = keyFrames.get(0).getxPosition();
         zPos = keyFrames.get(0).getzPosition();
         rotation = keyFrames.get(0).getRotation();
@@ -68,6 +68,10 @@ public class RobotAnimationManager {
             preCurrentKeyFrameIndex = 0;
         }
 
+        double previousXPos = getxPos();
+        double previousZPos = getzPos();
+        double previousRotation = getRotation();
+
         double currentSeconds = getSeconds();
         double duration = keyFrames.get(currentKeyFrameIndex).getDuration();
         double normalisedTime = (currentSeconds - localTime)/duration;
@@ -87,10 +91,13 @@ public class RobotAnimationManager {
                 keyFrames.get(nextKeyFramesIndex).getRotation(),
                 keyFrames.get(preCurrentKeyFrameIndex).getRotation());
         direction = keyFrames.get(currentKeyFrameIndex).isForward();
-        if(normalisedTime > 0.5) {
-            normalisedTime = 1-normalisedTime;
-        }
-        lean = 0;//normalisedTime*2;
+
+        double distanceTravelledSinceLastFrame = Math.sqrt(Math.pow(previousXPos - xPos, 2) + Math.pow(previousZPos-zPos, 2));
+        double newSpeed = distanceTravelledSinceLastFrame*1.3;
+        speed = (speed+newSpeed)/2;
+        double newTilt = previousRotation - rotation;;
+        tilt = (tilt*1.75 + newTilt*1.75)/2;
+        System.out.println(tilt);
 
         if (currentSeconds - localTime > duration) {
             localTime = currentSeconds;
@@ -131,7 +138,11 @@ public class RobotAnimationManager {
         return direction;
     }
 
-    public double getLean() {
-        return lean;
+    public double getSpeed() {
+        return speed;
+    }
+
+    public double getTilt() {
+        return tilt;
     }
 }

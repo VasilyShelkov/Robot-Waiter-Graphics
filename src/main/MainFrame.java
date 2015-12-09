@@ -16,7 +16,7 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
     public final static int CANVAS_HEIGHT = 400;
     public final static int FRAME_WIDTH = 800;
     public final static int FRAME_HEIGHT = 800;
-    public final static int FPS = 20;
+    public final static int FPS = 60;
 
     private final Checkbox checkMainLight, checkSpotLight, checkRobotLight;
     private GLCanvas canvas;
@@ -96,16 +96,16 @@ public class MainFrame extends Frame implements MouseMotionListener, ItemListene
         if (e.getActionCommand().equalsIgnoreCase("startanim")) {
             renderer.setContinuousAnimation(true);
             renderer.getScene().getRobotAnimationManger1().startAnimation();
-            renderer.getScene().getRobotAnimationManger2().startAnimation();
+//            renderer.getScene().getRobotAnimationManger2().startAnimation();
         }
         else if (e.getActionCommand().equalsIgnoreCase("pauseanim")) {
             renderer.setContinuousAnimation(false);
             renderer.getScene().getRobotAnimationManger1().pauseAnimation();
-            renderer.getScene().getRobotAnimationManger2().pauseAnimation();
+//            renderer.getScene().getRobotAnimationManger2().pauseAnimation();
         }
         else if (e.getActionCommand().equalsIgnoreCase("resetscene")) {
             renderer.getScene().getRobotAnimationManger1().resetAnimation();
-            renderer.getScene().getRobotAnimationManger2().resetAnimation();
+//            renderer.getScene().getRobotAnimationManger2().resetAnimation();
             renderer.setLastUpdate(true);
             renderer.setContinuousAnimation(false);
         }

@@ -19,6 +19,8 @@ public class LowerBody extends SceneGraph {
     private GLUquadric quadric;
     private boolean forward;
 
+    private double bodyTilt;
+
     public LowerBody(double bodyHeight, Texture t) {
         super(0,0,0, new BluePlastic());
         this.bodyHeight = bodyHeight;
@@ -44,6 +46,7 @@ public class LowerBody extends SceneGraph {
     public void transform(GL2 gl) {
         super.transform(gl);
         gl.glRotated(bodyRotation%360, 1, 0, 0);
+        gl.glRotated(bodyTilt, 0, 0, 1);
         gl.glRotated(90, 0, 1, 0);
     }
 
@@ -62,6 +65,10 @@ public class LowerBody extends SceneGraph {
 
     public void setDirection(boolean direction) {
         this.forward = direction;
+    }
+
+    public void setBodyTilt(double bodyTilt) {
+        this.bodyTilt = bodyTilt;
     }
 
     public void setBodyTexture(Texture bodyTexture) {

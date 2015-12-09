@@ -18,31 +18,25 @@ public class Robot extends SceneGraph {
     private double z;
     private double x;
     private double rotate;
-    private double relPosition;
-    private double cosAngle;
-    private double sinAngle;
     private boolean forward;
 
-    private final LowerBody lowerLowerBody;
+    private final LowerBody LowerBody;
 
     private final UpperBody upperBody;
     private final RobotAnimationManager robotAnimations;
     public Robot(GL2 gl, int height, double x, double y, double z, int rotation, Light l, RobotAnimationManager rm) {
         super(0, height * 0.8, 0, new Bronze());
-        this.relPosition = 0;
         this.rotate = rotation;
         this.forward = true;
         this.robotAnimations = rm;
         this.x = x;
         this.z = z;
 
-        setTransformAngles(rotation);
-
         //lowerbody
         Texture robotBodyTex = loadTexture(gl, "textures" + File.separator + "icerivetsnew.jpg");
         double bodyHeight = height * 0.8;
-        lowerLowerBody = new LowerBody(bodyHeight, robotBodyTex);
-        addChild(lowerLowerBody);
+        LowerBody = new LowerBody(bodyHeight, robotBodyTex);
+        addChild(LowerBody);
 
         //upperbody
         Texture robotNoseTex = loadTexture(gl, "textures" + File.separator + "carrot.jpg");
@@ -54,7 +48,6 @@ public class Robot extends SceneGraph {
     @Override
     public void transform(GL2 gl) {
         super.transform(gl);
-//        gl.glTranslated(-(sinAngle * relPosition), 0, -(cosAngle * relPosition));
         gl.glTranslated(x,0,z);
         gl.glRotated(rotate, 0, 1, 0);
     }
@@ -69,28 +62,22 @@ public class Robot extends SceneGraph {
         rotate = robotAnimations.getRotation();
 
         forward = robotAnimations.getDirection();
-        double lean = robotAnimations.getLean();
+        double speed = robotAnimations.getSpeed();
+        double tilt = robotAnimations.getTilt();
 
-        lowerLowerBody.setDirection(forward);
-        lowerLowerBody.setSpeed(lean);
-//        System.out.println(acceleration);
+        LowerBody.setDirection(forward);
+        LowerBody.setSpeed(speed);
+        LowerBody.setBodyTilt(tilt);
         upperBody.setDirection(forward);
-        upperBody.setSpeed(lean);
-//
-//        setTransformAngles(this.rotate);
-    }
-
-    private void setTransformAngles(double rotation){
-        double circleAngle = Math.toRadians(rotation%360);
-        this.cosAngle = Math.cos(circleAngle);
-        this.sinAngle = Math.sin(circleAngle);
+        upperBody.setSpeed(speed);
+        upperBody.setBodyTilt(tilt);
     }
 
     public UpperBody getUpperBody() {
         return upperBody;
     }
 
-    public LowerBody getLowerLowerBody() {
-        return lowerLowerBody;
+    public LowerBody getLowerBody() {
+        return LowerBody;
     }
 }

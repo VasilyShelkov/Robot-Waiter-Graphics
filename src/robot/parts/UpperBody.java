@@ -79,6 +79,10 @@ public class UpperBody extends SceneGraph {
     }
 
 
+    public Head getHead() {
+        return head;
+    }
+
     public void setSpeed(double speed) {
         this.speed = speed;
     }
@@ -87,7 +91,7 @@ public class UpperBody extends SceneGraph {
         this.forward = direction;
     }
 
-    public Head getHead() {
-        return head;
+    public void setBodyTilt(double bodyTilt) {
+        this.bodyTilt = bodyTilt;
     }
 }

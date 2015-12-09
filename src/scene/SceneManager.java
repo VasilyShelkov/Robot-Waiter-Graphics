@@ -63,13 +63,13 @@ public class SceneManager {
         Robot robot1 = new Robot(gl, 3, 15, 0, 20, 230, robot1light, robotAnimationManger1);
         root.addChild(robot1);
 
-        robotAnimationManger2 = createRobot2AnimationManager();
-        Robot robot2 = new Robot(gl, 3, -15, 0, -20, 50, robot2light, robotAnimationManger2);
-        UpperBody robot2UpperBody = robot2.getUpperBody();
-        robot2UpperBody.setMaterial(new Ruby());
-        robot2UpperBody.getHead().setMaterial(new Ruby());
-        robot2.getLowerLowerBody().setBodyTexture(robot2.loadTexture(gl, "textures" + File.separator + "firerivets.jpg"));
-        root.addChild(robot2);
+//        robotAnimationManger2 = createRobot2AnimationManager();
+//        Robot robot2 = new Robot(gl, 3, -15, 0, -20, 50, robot2light, robotAnimationManger2);
+//        UpperBody robot2UpperBody = robot2.getUpperBody();
+//        robot2UpperBody.setMaterial(new Ruby());
+//        robot2UpperBody.getHead().setMaterial(new Ruby());
+//        robot2.getLowerBody().setBodyTexture(robot2.loadTexture(gl, "textures" + File.separator + "firerivets.jpg"));
+//        root.addChild(robot2);
     }
 
     public void renderGraph(GL2 gl) {
