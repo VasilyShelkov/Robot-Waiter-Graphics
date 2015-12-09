@@ -24,6 +24,8 @@ public class Robot extends SceneGraph {
 
     private final UpperBody upperBody;
     private final RobotAnimationManager robotAnimations;
+    private double normalisedTime;
+
     public Robot(GL2 gl, int height, double x, double y, double z, int rotation, Light l, RobotAnimationManager rm) {
         super(0, height * 0.8, 0, new Bronze());
         this.rotate = rotation;
@@ -64,6 +66,12 @@ public class Robot extends SceneGraph {
         forward = robotAnimations.getDirection();
         double speed = robotAnimations.getSpeed();
         double tilt = robotAnimations.getTilt();
+
+        if(robotAnimations.isServing()){
+            normalisedTime = robotAnimations.getNormalisedTime1();
+            upperBody.setBodyServingTwist(130*normalisedTime);
+            upperBody.getHead().setHeadServingAdjustment(130*normalisedTime);
+        }
 
         LowerBody.setDirection(forward);
         LowerBody.setSpeed(speed);

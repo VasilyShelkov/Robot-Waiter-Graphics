@@ -9,6 +9,7 @@ public class KeyFrame {
     private double rotation;
     private boolean direction;
     private final double duration;
+    private boolean serving;
 
     public KeyFrame(double xPosition, double zPosition, double rotation, boolean direction, double duration) {
         this.xPosition = xPosition;
@@ -16,6 +17,16 @@ public class KeyFrame {
         this.rotation = rotation;
         this.direction = direction;
         this.duration = duration;
+        this.serving = false;
+    }
+
+    public KeyFrame(double xPosition, double zPosition, double rotation, boolean direction,double duration, boolean serving) {
+        this.xPosition = xPosition;
+        this.zPosition = zPosition;
+        this.rotation = rotation;
+        this.direction = direction;
+        this.duration = duration;
+        this.serving = serving;
     }
 
     public double getxPosition() {
@@ -36,5 +47,9 @@ public class KeyFrame {
 
     public double getDuration() {
         return duration;
+    }
+
+    public boolean isServing() {
+        return serving;
     }
 }

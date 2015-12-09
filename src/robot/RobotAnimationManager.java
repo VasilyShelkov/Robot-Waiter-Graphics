@@ -18,6 +18,8 @@ public class RobotAnimationManager {
     private double speed;
 
     private double tilt;
+    private double normalisedTime1;
+    private boolean serving;
 
     public RobotAnimationManager(ArrayList<KeyFrame> keyFrames) {
         this.keyFrames = keyFrames;
@@ -97,7 +99,13 @@ public class RobotAnimationManager {
         speed = (speed+newSpeed)/2;
         double newTilt = previousRotation - rotation;;
         tilt = (tilt*1.75 + newTilt*1.75)/2;
-        System.out.println(tilt);
+
+        if (normalisedTime > 0.5){
+            normalisedTime = 1 - normalisedTime;
+        }
+
+        normalisedTime1 = normalisedTime;
+        serving = keyFrames.get(currentKeyFrameIndex).isServing();
 
         if (currentSeconds - localTime > duration) {
             localTime = currentSeconds;
@@ -144,5 +152,13 @@ public class RobotAnimationManager {
 
     public double getTilt() {
         return tilt;
+    }
+
+    public double getNormalisedTime1() {
+        return normalisedTime1;
+    }
+
+    public boolean isServing() {
+        return serving;
     }
 }

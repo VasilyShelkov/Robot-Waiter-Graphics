@@ -21,6 +21,7 @@ public class UpperBody extends SceneGraph {
     public double speed;
     private final int slices;
     private boolean forward;
+    private double bodyServingTwist;
 
     public UpperBody(double height, double bodyHeight, Texture robotNoseTex, Light l) {
         super(0, bodyHeight*0.9, 0, new BluePlastic());
@@ -62,6 +63,7 @@ public class UpperBody extends SceneGraph {
         gl.glRotated(bodyLean, 1, 0, 0);
         gl.glRotated(bodyTilt, 0, 0, 1);
         gl.glTranslated(0,bodyHeight,0);
+        gl.glRotated(-bodyServingTwist, 0, 1, 0);
     }
 
     @Override
@@ -93,5 +95,9 @@ public class UpperBody extends SceneGraph {
 
     public void setBodyTilt(double bodyTilt) {
         this.bodyTilt = bodyTilt;
+    }
+
+    public void setBodyServingTwist(double bodyServingTwist) {
+        this.bodyServingTwist = bodyServingTwist;
     }
 }

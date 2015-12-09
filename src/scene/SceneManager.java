@@ -119,7 +119,7 @@ public class SceneManager {
         robotAnimationKeyFrames.add(new KeyFrame(8, 13, 260, true,0.8));
         robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,0.6));
         robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,0.4));
-        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,3));
+        robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,4, true));
         robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, true,0.5));
         robotAnimationKeyFrames.add(new KeyFrame(7, 12, 260, false,1));
 
@@ -131,7 +131,7 @@ public class SceneManager {
         robotAnimationKeyFrames.add(new KeyFrame(13, -3, 190, true, 0.7));
         robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 0.4));
         robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 0.4));
-        robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 4, true));
         robotAnimationKeyFrames.add(new KeyFrame(13, -6, 220, true, 0.5));
         robotAnimationKeyFrames.add(new KeyFrame(13, -5, 220, false, 1));
 
@@ -147,7 +147,7 @@ public class SceneManager {
         //third table stop
         robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 0.5));
         robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 0.3));
-        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 4, true));
         robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, true, 0.5));
         robotAnimationKeyFrames.add(new KeyFrame(-13.5, -17.5, 405, false, 1));
 
@@ -160,7 +160,7 @@ public class SceneManager {
         robotAnimationKeyFrames.add(new KeyFrame(-8, -2, 540, true, 0.7));
         robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 0.5));
         robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 0.5));
-        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 4, true));
         robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 0.7));
         robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, true, 1));
         robotAnimationKeyFrames.add(new KeyFrame(-8, -4, 540, false, 2));
@@ -172,7 +172,7 @@ public class SceneManager {
         robotAnimationKeyFrames.add(new KeyFrame(-8, 8, 435, true, 0.7));
         robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 0.7));
         robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 0.5));
-        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 4, true));
         robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, true, 1));
         robotAnimationKeyFrames.add(new KeyFrame(-7, 8, 435, false, 1.5));
         robotAnimationKeyFrames.add(new KeyFrame(-8, 9, 465, false, 1.5));
@@ -186,7 +186,7 @@ public class SceneManager {
         robotAnimationKeyFrames.add(new KeyFrame(2, -1, 500, true, 1));
         robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 0.7));
         robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 0.5));
-        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 3));
+        robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 4, true));
         robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, true, 0.5));
         robotAnimationKeyFrames.add(new KeyFrame(4, -5, 505, false, 0.7));
         robotAnimationKeyFrames.add(new KeyFrame(2, -3, 480, false, 1.2));

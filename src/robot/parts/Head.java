@@ -17,6 +17,8 @@ public class Head extends SceneGraph {
     private double headTilt;
     int slices;
 
+    private double headServingAdjustment;
+
     public Head(double x, double y, double z, double headHeight, double bodyLean, Texture noseTexture, Light l) {
         super(x, y, z, new BluePlastic());
         this.headHeight = headHeight;
@@ -54,6 +56,7 @@ public class Head extends SceneGraph {
         super.transform(gl);
         gl.glRotated(headLean, 1, 0, 0);
         gl.glRotated(headTilt, 0, 0, 1);
+        gl.glRotated(headServingAdjustment, 0, 1, 0);
     }
 
     public void setHeadLean(double headLean) {
@@ -62,5 +65,9 @@ public class Head extends SceneGraph {
 
     public void setHeadTilt(double headTilt) {
         this.headTilt = headTilt;
+    }
+
+    public void setHeadServingAdjustment(double headServingAdjustment) {
+        this.headServingAdjustment = headServingAdjustment;
     }
 }
