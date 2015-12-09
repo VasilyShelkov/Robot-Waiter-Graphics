@@ -3,6 +3,7 @@ A Java JOGL OpenGL2 replayable animation which shows a robot holding some drinks
 empty restuarant room with some tables in the room.
 
 # See it in Action for Yourself !
+https://youtu.be/DN0apB-GO9A
 
 #How to Run
 The only dependency for the project is JOGL. The project depends on jogl-all.jar and gluegen-rt.jar.
@@ -10,12 +11,13 @@ The only dependency for the project is JOGL. The project depends on jogl-all.jar
 The download can be found at http://jogamp.org/
 
 This project required to be runnable without any build tools(unfortunately) on the command line: 
-Linux(Personally ran on Ubuntu 15.04)
+
+- Linux(Personally ran on Ubuntu 15.04)
 ```
 javac -cp .:./src/:./lib/gluegen-rt.jar:./lib/jogl-all.jar: main.MainFrame (build from root directory)
 java -cp .:./Robot-Waiter-Graphics/:./lib/gluegen-rt.jar:./lib/jogl-all.jar: main.MainFrame (run from out/production)
 ```
-Windows
+- Windows
 ```
 javac -cp .;./src/;./lib/gluegen-rt.jar;./lib/jogl-all.jar; main.MainFrame (build from root directory)
 java -cp .;./Robot-Waiter-Graphics/;./lib/gluegen-rt.jar;./lib/jogl-all.jar; main.MainFrame (run from out/production)
@@ -37,7 +39,7 @@ favourite IDE(like IntelliJ or Eclipse and setting up the module dependencies fr
     *	Claw-like hands
   -	Carrying a Tray with 6 simple champagne flumes on it.
 
-### 2. Room(room.Room and peripherals):
+### 2. Room(room.Room, Primitives and peripherals):
   - U,V texture coordinate on planes are done separately to the number of slices(for lighting smoothening)
   - Room objects are all stored in initialized display lists to speed up rendering.
   -	Floor with marble texture.
@@ -55,5 +57,4 @@ favourite IDE(like IntelliJ or Eclipse and setting up the module dependencies fr
   2 keyframes back and forward.
   -	Buttons on the interface to start/stop/reset the animation
 
-### 4. Camera points towards center of room, user is able to use the mouse to rotate(hold mouse left click) 
-and zoom(hold mouse right click) the camera around the scene.
+### 4. Camera points towards center of room, user is able to use the mouse to rotate(hold mouse left click) and zoom(hold mouse right click) the camera around the scene.
