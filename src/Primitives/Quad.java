@@ -39,13 +39,13 @@ public class Quad {
             gl.glTexCoord2f(0, 0);
             gl.glVertex3d(vertices[0].getX(), vertices[0].getY(), vertices[0].getZ());
 
-            gl.glTexCoord2f(0.5f, 0);
+            gl.glTexCoord2f(1f, 0);
             gl.glVertex3d(vertices[1].getX(), vertices[1].getY(), vertices[1].getZ());
 
-            gl.glTexCoord2f(0.5f, 0.5f);
+            gl.glTexCoord2f(1f, 1f);
             gl.glVertex3d(vertices[2].getX(), vertices[2].getY(), vertices[2].getZ());
 
-            gl.glTexCoord2f(0, 0.5f);
+            gl.glTexCoord2f(0, 1f);
             gl.glVertex3d(vertices[3].getX(), vertices[3].getY(), vertices[3].getZ());
         gl.glEnd();
 

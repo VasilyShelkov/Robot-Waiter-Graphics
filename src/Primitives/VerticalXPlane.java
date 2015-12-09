@@ -1,13 +1,12 @@
 package Primitives;
 
-import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.texture.Texture;
 
 /**
  * Created by vasily on 05/12/15.
  */
 public class VerticalXPlane extends Plane {
-    public VerticalXPlane(int centreX, int centreY, int centreZ,
+    public VerticalXPlane(double centreX, double centreY, double centreZ,
                            double width, double height, int xSlices, int ySlices, int[] normals, Texture t) {
         int quadOffset = 0;
         double startX = centreX-(width/2);
@@ -15,11 +14,11 @@ public class VerticalXPlane extends Plane {
         double stepX = width/(xSlices-1);
         double stepY = height/(ySlices-1);
 
-        int quadsSize = (xSlices)*(ySlices);
+        int quadsSize = (xSlices-1)*(ySlices-1);
         quads = new Quad[quadsSize];
 
-        for(int i=0; i<xSlices; i++) {
-            for (int j = 0; j < ySlices; j++) {
+        for(int i=0; i<xSlices-1; i++) {
+            for (int j = 0; j < ySlices-1; j++) {
                 Vertex v1 = new Vertex(startX + (i * stepX), startY + ((j + 1) * stepY), centreZ);
                 Vertex v2 = new Vertex(startX + ((i + 1) * stepX), startY + ((j + 1) * stepY), centreZ);
                 Vertex v3 = new Vertex(startX + ((i + 1) * stepX), startY + (j * stepY), centreZ);
@@ -33,11 +32,5 @@ public class VerticalXPlane extends Plane {
                 quadOffset++;
             }
         }
-    }
-
-    @Override
-    public void transform(GL2 gl) {
-        super.transform(gl);
-        gl.glRotated(180, 0, 1, 0);
     }
 }

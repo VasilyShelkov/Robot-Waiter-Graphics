@@ -14,11 +14,11 @@ public class VerticalZPlane extends Plane {
         double stepZ = depth/(zSlices-1);
         double stepY = height/(ySlices-1);
 
-        int quadsSize = (zSlices)*(ySlices);
+        int quadsSize = (zSlices-1)*(ySlices-1);
         quads = new Quad[quadsSize];
 
-        for(int i=0; i<zSlices; i++) {
-            for (int j = 0; j < ySlices; j++) {
+        for(int i=0; i<zSlices-1; i++) {
+            for (int j = 0; j < ySlices-1; j++) {
                 Vertex v1 = new Vertex(centreX, startY + ((j + 1) * stepY), startZ + (i * stepZ));
                 Vertex v2 = new Vertex(centreX, startY + ((j + 1) * stepY), startZ + ((i + 1) * stepZ));
                 Vertex v3 = new Vertex(centreX, startY + (j * stepY), startZ + ((i + 1) * stepZ));
